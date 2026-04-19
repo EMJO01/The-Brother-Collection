@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Thëßrøthërs Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== SHOP PAGE STYLES ===== */
+    .shop-hero {
+      background: var(--brown-dark);
+      color: var(--cream);
+      text-align: center;
+      padding: 60px 10%;
+    }
+
+    .shop-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .shop-hero p {
+      color: var(--brown-light);
+      font-size: 15px;
+      letter-spacing: 3px;
+    }
+
+    /* ===== CART ICON (sticky top right) ===== */
+    .cart-icon-wrapper {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+    }
+
+    .cart-fab {
+      background: var(--brown-main);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(58,46,30,0.3);
+      transition: 0.25s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .cart-fab:hover {
+      background: var(--brown-dark);
+      transform: translateY(-3px);
+    }
+
+    .cart-count {
+      background: #fff;
+      color: var(--brown-dark);
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== CATEGORIES ===== */
+    .shop-controls {
+      padding: 30px 6% 10px;
+      background: var(--cream);
+      position: sticky;
+      top: 55px;
+      z-index: 40;
+      border-bottom: 1px solid rgba(58,46,30,0.1);
+    }
+
+    .category-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .category-btn {
+      background: transparent;
+      border: 1.5px solid var(--brown-main);
+      color: var(--brown-dark);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.2s ease;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--brown-main);
+      color: #fff;
+    }
+
+    .sub-row {
+      display: none;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--brown-light);
+    }
+
+    .sub-row.open {
+      display: flex;
+    }
+
+    .sub-row .category-btn {
+      font-size: 12px;
+      padding: 6px 14px;
+      border-color: var(--brown-light);
+      color: var(--muted);
+    }
+
+    .sub-row .category-btn:hover,
+    .sub-row .category-btn.active {
+      background: var(--brown-light);
+      color: var(--brown-dark);
+      border-color: var(--brown-light);
+    }
+
+    /* ===== PRODUCT GRID ===== */
+    .shop-main {
+      padding: 40px 6%;
+      background: var(--cream);
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brown-dark);
+      margin: 40px 0 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--brown-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 5px;
+      height: 22px;
+      background: var(--brown-main);
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    /* ===== PRODUCT CARD ===== */
+    .product-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid var(--brown-light);
+      transition: 0.25s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 35px rgba(58,46,30,0.12);
+      border-color: var(--brown-main);
+    }
+
+    .product-card.coming-soon {
+      opacity: 0.65;
+      pointer-events: none;
+      filter: grayscale(50%);
+    }
+
+    .coming-soon-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--brown-dark);
+      color: var(--cream);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      z-index: 2;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 14px 14px 6px;
+      flex: 1;
+    }
+
+    .product-info h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--brown-dark);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .product-info .price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--brown-main);
+    }
+
+    .product-info .category-tag {
+      display: inline-block;
+      font-size: 10px;
+      background: var(--cream);
+      color: var(--muted);
+      border: 1px solid var(--brown-light);
+      border-radius: 10px;
+      padding: 2px 8px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 11px;
+      background: var(--brown-main);
+      color: #fff;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: auto;
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--brown-dark);
+    }
+
+    .add-to-cart-btn.added {
+      background: #2d7a3a;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .empty-state i {
+      font-size: 48px;
+      margin-bottom: 14px;
+      color: var(--brown-light);
+    }
+
+    /* ===== CART DRAWER ===== */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .cart-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      background: #fff;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-drawer-header {
+      padding: 20px 22px;
+      background: var(--brown-dark);
+      color: var(--cream);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-drawer-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px 22px;
+    }
+
+    .cart-empty-msg {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .cart-empty-msg i {
+      font-size: 40px;
+      margin-bottom: 12px;
+      color: var(--brown-light);
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0ebe4;
+    }
+
+    .cart-item img {
+      width: 62px;
+      height: 62px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--brown-light);
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-info h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brown-dark);
+      margin-bottom: 3px;
+    }
+
+    .cart-item-info p {
+      font-size: 13px;
+      color: var(--brown-main);
+      font-weight: 700;
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid var(--brown-light);
+      background: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--brown-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.15s;
+    }
+
+    .qty-btn:hover {
+      background: var(--brown-light);
+    }
+
+    .qty-display {
+      font-size: 13px;
+      font-weight: 700;
+      min-width: 18px;
+      text-align: center;
+      color: var(--brown-dark);
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #c0392b;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 2px 4px;
+      transition: 0.15s;
+    }
+
+    .remove-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .cart-footer {
+      padding: 18px 22px;
+      border-top: 2px solid var(--brown-light);
+      background: #fdfaf7;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .cart-total-row span:first-child {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .cart-total-row span:last-child {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brown-dark);
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--brown-main);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.2s;
+    }
+
+    .checkout-btn:hover {
+      background: var(--brown-dark);
+    }
+
+    /* Center category rows */
+.shop-controls {
+  text-align: center;
+}
+
+.category-row {
+  justify-content: center;
+}
+
+.sub-row {
+  justify-content: center;
+  padding-left: 0;
+  border-left: none;
+  border-top: 2px solid var(--brown-light);
+  padding-top: 10px;
+  margin-top: 8px;
+}
+
+/* Center footer */
+.footer .footer-container {
+  justify-content: center;
+  text-align: center;
+}
+
+.footer .footer-brand {
+  text-align: center;
+}
+
+.footer .footer-links {
+  justify-content: center;
+}
+
+.footer .footer-col {
+  align-items: center;
+  text-align: center;
+}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .shop-controls { top: 50px; }
+      .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+      .product-card img { height: 170px; }
+      .cart-drawer { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h2>Thëßrøthërs collection</h2>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#showcase">Showcase</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    </nav>
+  </header>
+
+  <!-- SHOP HERO -->
+  <div class="shop-hero">
+    <h1>Shop The Collection</h1>
+    <p>Fashion · Music · Lifestyle</p>
+  </div>
+
+  <!-- CATEGORY FILTER BAR -->
+  <div class="shop-controls">
+    <div class="category-row" id="mainCats">
+      <button class="category-btn active" onclick="filterCategory('all', this)">All</button>
+
+      <button class="category-btn" onclick="toggleSub('shoeSub', this)">
+        Shoes <i class="fas fa-chevron-down" style="font-size:10px;margin-left:4px"></i>
+      </button>
+
+      <button class="category-btn" onclick="toggleSub('clothSub', this)">
+        Clothing <i class="fas fa-chevron-down" style="font-size:10px;margin-left:4px"></i>
+      </button>
+
+      <button class="category-btn" onclick="toggleSub('accSub', this)">
+        Accessories <i class="fas fa-chevron-down" style="font-size:10px;margin-left:4px"></i>
+      </button>
+
+      <button class="category-btn" onclick="filterCategory('nomadic', this)">Nomadic Collection</button>
+    </div>
+
+    <div class="sub-row" id="shoeSub">
+      <button class="category-btn" onclick="filterCategory('sneakers', this)">Sneakers</button>
+      <button class="category-btn" onclick="filterCategory('loafers', this)">Loafers</button>
+      <button class="category-btn" onclick="filterCategory('slides', this)">Slides</button>
+    </div>
+
+    <div class="sub-row" id="clothSub">
+      <button class="category-btn" onclick="filterCategory('tops', this)">Tops</button>
+      <button class="category-btn" onclick="filterCategory('trousers', this)">Trousers</button>
+      <button class="category-btn" onclick="filterCategory('tailored', this)">Tailored</button>
+    </div>
+
+    <div class="sub-row" id="accSub">
+      <button class="category-btn" onclick="filterCategory('glass', this)">Glasses</button>
+      <button class="category-btn" onclick="filterCategory('watch', this)">Watches</button>
+      <button class="category-btn" onclick="filterCategory('caps', this)">Caps</button>
+    </div>
+  </div>
+
+  <!-- MAIN SHOP AREA -->
+  <main class="shop-main">
+
+    <!-- FEATURED (random mix shown first, only visible on "All") -->
+    <div id="featured-section">
+      <h2 class="section-title">Featured Picks</h2>
+      <div class="product-grid" id="featured-grid"></div>
+    </div>
+
+    <!-- SHOES -->
+    <div class="category-section" data-section="shoes">
+      <h2 class="section-title">Shoe Collection</h2>
+      <div class="product-grid" id="shoes-grid">
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/Nike F1.jpeg" alt="Nike Katsusiro Dunk Low">
+          <div class="product-info">
+            <h3>Nike Katsusiro Dunk Low</h3>
+            <p class="price">₦26,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Nike Katsusiro Dunk Low', '₦26,000', 'img/Nike F1.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/chunky.jpeg" alt="Nike SB Dunk Low Shadow">
+          <div class="product-info">
+            <h3>Nike SB Dunk Low Shadow</h3>
+            <p class="price">₦26,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Nike SB Dunk Low Shadow', '₦26,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/chunky.jpeg" alt="Nike AF1 Custom Brown">
+          <div class="product-info">
+            <h3>Nike AF1 Custom Brown</h3>
+            <p class="price">₦26,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Nike AF1 Custom Brown', '₦26,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/chunky.jpeg" alt="Nike AF1 Pure White">
+          <div class="product-info">
+            <h3>Nike AF1 Pure White</h3>
+            <p class="price">₦19,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Nike AF1 Pure White', '₦19,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/chunky.jpeg" alt="Adidas FOG Brown High">
+          <div class="product-info">
+            <h3>Adidas FOG Brown (High)</h3>
+            <p class="price">₦28,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Adidas FOG Brown (High)', '₦28,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/chunky.jpeg" alt="Louis Vuitton Chunky Sneakers">
+          <div class="product-info">
+            <h3>Louis Vuitton Chunky Sneakers</h3>
+            <p class="price">₦35,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Louis Vuitton Chunky Sneakers', '₦35,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/chunky.jpeg" alt="Air Jordan 4s R/W">
+          <div class="product-info">
+            <h3>Air Jordan 4s (R/W)</h3>
+            <p class="price">₦35,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Air Jordan 4s (R/W)', '₦35,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/chunky.jpeg" alt="Givenchy Paris Sneakers">
+          <div class="product-info">
+            <h3>Givenchy Paris Sneakers</h3>
+            <p class="price">₦30,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Givenchy Paris Sneakers', '₦30,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="sneakers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Sneakers</span>
+          <img src="img/chunky.jpeg" alt="Metallic Balenciaga Shoe">
+          <div class="product-info">
+            <h3>Metallic Balenciaga Shoe</h3>
+            <p class="price">₦49,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Metallic Balenciaga Shoe', '₦49,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="loafers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Loafers</span>
+          <img src="img/chunky.jpeg" alt="Dr Martens">
+          <div class="product-info">
+            <h3>Dr Martens</h3>
+            <p class="price">₦49,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Dr Martens', '₦49,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="loafers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Loafers</span>
+          <img src="img/chunky.jpeg" alt="Amiri Sneakers B/W">
+          <div class="product-info">
+            <h3>Amiri Sneakers (B/W)</h3>
+            <p class="price">₦33,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Amiri Sneakers (B/W)', '₦33,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="loafers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Loafers</span>
+          <img src="img/chunky.jpeg" alt="Puma Suede">
+          <div class="product-info">
+            <h3>Puma Suede</h3>
+            <p class="price">₦33,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Puma Suede', '₦33,000', 'img/chunky.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="slides">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Slides</span>
+          <img src="img/timber.jpeg" alt="Timberland">
+          <div class="product-info">
+            <h3>Timberland</h3>
+            <p class="price">₦45,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Timberland', '₦45,000', 'img/timber.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CLOTHING -->
+    <div class="category-section" data-section="clothing">
+      <h2 class="section-title">Clothing Collection</h2>
+      <div class="product-grid" id="clothing-grid">
+
+        <div class="product-card" data-cat="tops">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Tops</span>
+          <img src="img/Newa Tops.jpeg" alt="Classic T-Shirt">
+          <div class="product-info">
+            <h3>Classic T-Shirt</h3>
+            <p class="price">₦15,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Classic T-Shirt', '₦15,000', 'img/Newa Tops.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="tops">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Tops</span>
+          <img src="img/Reckless Tops.jpeg" alt="Hoodie">
+          <div class="product-info">
+            <h3>Reckless Hoodie</h3>
+            <p class="price">₦25,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Reckless Hoodie', '₦25,000', 'img/Reckless Tops.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="trousers">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Trousers</span>
+          <img src="img/Cargo Shorts.jpeg" alt="Cargo Shorts">
+          <div class="product-info">
+            <h3>Cargo Shorts</h3>
+            <p class="price">₦20,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Cargo Shorts', '₦20,000', 'img/Cargo Shorts.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="tailored">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Tailored</span>
+          <img src="img/Reckless Tops.jpeg" alt="Tailored Set">
+          <div class="product-info">
+            <h3>Tailored Set</h3>
+            <p class="price">₦55,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Tailored Set', '₦55,000', 'img/Reckless Tops.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ACCESSORIES -->
+    <div class="category-section" data-section="accessories">
+      <h2 class="section-title">Accessories Collection</h2>
+      <div class="product-grid" id="accessories-grid">
+
+        <div class="product-card" data-cat="caps">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Caps</span>
+          <img src="img/Naija Fila.jpeg" alt="Classic Cap">
+          <div class="product-info">
+            <h3>Naija Fila Cap</h3>
+            <p class="price">₦12,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Naija Fila Cap', '₦12,000', 'img/Naija Fila.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="glass">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Glasses</span>
+          <img src="img/Sunglass.jpeg" alt="Stylish Sunglasses">
+          <div class="product-info">
+            <h3>Stylish Sunglasses</h3>
+            <p class="price">₦18,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'Stylish Sunglasses', '₦18,000', 'img/Sunglass.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+        <div class="product-card" data-cat="watch">
+          <span class="category-tag" style="display:block;padding:6px 14px;background:var(--cream);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Watch</span>
+          <img src="img/G.Shock.jpeg" alt="G-Shock Watch">
+          <div class="product-info">
+            <h3>G-Shock Watch</h3>
+            <p class="price">₦85,000</p>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCart(this, 'G-Shock Watch', '₦85,000', 'img/G.Shock.jpeg')">
+            <i class="fas fa-bag-shopping"></i> Add to Cart
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- NOMADIC COLLECTION -->
+    <div class="category-section" data-section="nomadic">
+      <h2 class="section-title">Nomadic Collection</h2>
+      <div class="product-grid" id="nomadic-grid">
+
+        <div class="product-card coming-soon" data-cat="nomadic">
+          <span class="coming-soon-label">Coming Soon</span>
+          <img src="img/Nomadic.jpg" alt="Nomadic Cap">
+          <div class="product-info">
+            <h3>Nomadic Cap</h3>
+            <p class="price">₦24,000</p>
+          </div>
+          <button class="add-to-cart-btn">
+            <i class="fas fa-lock"></i> Coming Soon
+          </button>
+        </div>
+
+        <div class="product-card coming-soon" data-cat="nomadic">
+          <span class="coming-soon-label">Coming Soon</span>
+          <img src="img/Nomadic1.jpg" alt="Nomadic Hoodie">
+          <div class="product-info">
+            <h3>Nomadic Hoodie</h3>
+            <p class="price">₦38,000</p>
+          </div>
+          <button class="add-to-cart-btn">
+            <i class="fas fa-lock"></i> Coming Soon
+          </button>
+        </div>
+
+        <div class="product-card coming-soon" data-cat="nomadic">
+          <span class="coming-soon-label">Coming Soon</span>
+          <img src="img/Nomadic.jpg" alt="Nomadic Pants">
+          <div class="product-info">
+            <h3>Nomadic Pants</h3>
+            <p class="price">₦32,000</p>
+          </div>
+          <button class="add-to-cart-btn">
+            <i class="fas fa-lock"></i> Coming Soon
+          </button>
+        </div>
+
+        <div class="product-card coming-soon" data-cat="nomadic">
+          <span class="coming-soon-label">Coming Soon</span>
+          <img src="img/Nomadic.jpg" alt="Nomadic Shorts">
+          <div class="product-info">
+            <h3>Nomadic Shorts</h3>
+            <p class="price">₦22,000</p>
+          </div>
+          <button class="add-to-cart-btn">
+            <i class="fas fa-lock"></i> Coming Soon
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FLOATING CART BUTTON -->
+  <div class="cart-icon-wrapper">
+    <button class="cart-fab" onclick="openCart()">
+      <i class="fas fa-bag-shopping"></i>
+      Cart
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+
+  <!-- CART OVERLAY -->
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+  <!-- CART DRAWER -->
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3><i class="fas fa-bag-shopping" style="margin-right:8px"></i> Your Cart</h3>
+      <button class="close-cart" onclick="closeCart()">&#x2715;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty-msg" id="cart-empty">
+        <i class="fas fa-bag-shopping"></i>
+        <p style="font-weight:600;color:var(--brown-dark);margin-bottom:6px">Your cart is empty</p>
+        <p style="font-size:13px;color:var(--muted)">Add items to get started</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cart-total">₦0</span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">
+        Checkout &nbsp;<i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>Thëßrøthërs</h2>
+        <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <a href="#">Wears</a>
+          <a href="#">Shoes</a>
+          <a href="#">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h3>Entertainment</h3>
+          <a href="#">News</a>
+          <a href="#">Music</a>
+          <a href="#">Lifestyle</a>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <a href="#">Contact</a>
+          <a href="#">FAQ</a>
+          <a href="#">Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-social">
+      <p>Follow Us</p>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
+        <a href="https://www.x.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
+    <p class="footer-tagline">Welcome To The Future 🚀</p>
+  </footer>
+
+  <script>
+    // ===== CART STATE =====
+    let cart = [];
+
+    // ===== FEATURED: random picks on load =====
+    function buildFeatured() {
+      const allCards = [...document.querySelectorAll('.product-card:not(.coming-soon)')];
+      const shuffled = allCards.sort(() => Math.random() - 0.5).slice(0, 4);
+      const grid = document.getElementById('featured-grid');
+      shuffled.forEach(card => {
+        const clone = card.cloneNode(true);
+        // re-attach onclick for cloned buttons
+        const btn = clone.querySelector('.add-to-cart-btn');
+        const origBtn = card.querySelector('.add-to-cart-btn');
+        if (btn && origBtn) {
+          btn.setAttribute('onclick', origBtn.getAttribute('onclick'));
+        }
+        grid.appendChild(clone);
+      });
+    }
+
+    // ===== FILTER =====
+    function filterCategory(cat, btn) {
+      // Update active button
+      document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const featuredSection = document.getElementById('featured-section');
+      const sections = document.querySelectorAll('.category-section');
+
+      if (cat === 'all') {
+        featuredSection.style.display = 'block';
+        sections.forEach(s => {
+          s.style.display = 'block';
+          s.querySelectorAll('.product-card').forEach(c => c.style.display = 'flex');
+        });
+        return;
+      }
+
+      featuredSection.style.display = 'none';
+
+      // Check if cat is a section-level filter
+      const sectionMap = { shoes: 'shoes', clothing: 'clothing', accessories: 'accessories', nomadic: 'nomadic' };
+
+      sections.forEach(section => {
+        const sectionName = section.dataset.section;
+        const cards = section.querySelectorAll('.product-card');
+        let hasVisible = false;
+
+        cards.forEach(card => {
+          const cardCat = card.dataset.cat;
+          const show = cardCat === cat || sectionName === cat;
+          card.style.display = show ? 'flex' : 'none';
+          if (show) hasVisible = true;
+        });
+
+        section.style.display = hasVisible ? 'block' : 'none';
+      });
+    }
+
+    // ===== TOGGLE SUB MENU =====
+    function toggleSub(id, btn) {
+      const sub = document.getElementById(id);
+      const isOpen = sub.classList.contains('open');
+
+      // Close all subs
+      document.querySelectorAll('.sub-row').forEach(s => s.classList.remove('open'));
+
+      if (!isOpen) {
+        sub.classList.add('open');
+      }
+    }
+
+    // ===== ADD TO CART =====
+    function addToCart(btn, name, price, img) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, img, qty: 1 });
+      }
+
+      btn.classList.add('added');
+      btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+      setTimeout(() => {
+        btn.classList.remove('added');
+        btn.innerHTML = '<i class="fas fa-bag-shopping"></i> Add to Cart';
+      }, 1400);
+
+      updateCartUI();
+    }
+
+    // ===== UPDATE CART UI =====
+    function updateCartUI() {
+      const total = cart.reduce((sum, i) => sum + i.qty, 0);
+      document.getElementById('cart-count').textContent = total;
+
+      const itemsEl = document.getElementById('cart-items');
+      const emptyEl = document.getElementById('cart-empty');
+
+      if (cart.length === 0) {
+        emptyEl.style.display = 'block';
+        // Remove all item rows
+        itemsEl.querySelectorAll('.cart-item').forEach(el => el.remove());
+        document.getElementById('cart-total').textContent = '₦0';
+        return;
+      }
+
+      emptyEl.style.display = 'none';
+      itemsEl.querySelectorAll('.cart-item').forEach(el => el.remove());
+
+      cart.forEach((item, idx) => {
+        const el = document.createElement('div');
+        el.className = 'cart-item';
+        el.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <div class="cart-item-info">
+            <h4>${item.name}</h4>
+            <p>${item.price}</p>
+            <div class="cart-item-controls">
+              <button class="qty-btn" onclick="changeQty(${idx}, -1)">−</button>
+              <span class="qty-display">${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+              <button class="remove-btn" onclick="removeItem(${idx})"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        `;
+        itemsEl.appendChild(el);
+      });
+
+      // Update total (numeric only items)
+      updateTotal();
+    }
+
+    function updateTotal() {
+      // Extract numeric value from price strings like ₦26,000
+      let sum = 0;
+      cart.forEach(item => {
+        const num = parseInt(item.price.replace(/[^\d]/g, ''));
+        if (!isNaN(num)) sum += num * item.qty;
+      });
+      document.getElementById('cart-total').textContent = '₦' + sum.toLocaleString();
+    }
+
+    function changeQty(idx, delta) {
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      updateCartUI();
+    }
+
+    function removeItem(idx) {
+      cart.splice(idx, 1);
+      updateCartUI();
+    }
+
+    // ===== OPEN / CLOSE CART =====
+    function openCart() {
+      document.getElementById('cart-drawer').classList.add('open');
+      document.getElementById('cart-overlay').classList.add('open');
+    }
+
+    function closeCart() {
+      document.getElementById('cart-drawer').classList.remove('open');
+      document.getElementById('cart-overlay').classList.remove('open');
+    }
+
+    // ===== CHECKOUT =====
+    function checkout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      const items = cart.map(i => `${i.name} x${i.qty}`).join('\n');
+      alert(`Order Summary:\n\n${items}\n\nThank you! We'll contact you on Instagram to complete your order.`);
+    }
+
+    // ===== INIT =====
+    buildFeatured();
+  </script>
+
+</body>
+<script src="main.js"></script>
+</html>

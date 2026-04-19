@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music | Thëßrøthërs Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --music-accent: #a97458;
+      --music-dark: #0a0a0a;
+      --music-card: #111111;
+      --music-border: rgba(169,116,88,0.2);
+      --music-muted: #888;
+    }
+
+    body { background: var(--music-dark); color: #fff; }
+
+    /* ===== HERO ===== */
+    .music-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 10% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .music-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, rgba(169,116,88,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .vinyl-bg {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      border: 1px solid rgba(169,116,88,0.08);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: slowSpin 30s linear infinite;
+    }
+
+    .vinyl-bg::before {
+      content: '';
+      position: absolute;
+      inset: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(169,116,88,0.06);
+    }
+
+    .vinyl-bg::after {
+      content: '';
+      position: absolute;
+      inset: 100px;
+      border-radius: 50%;
+      border: 1px solid rgba(169,116,88,0.04);
+    }
+
+    @keyframes slowSpin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .music-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .music-hero-tag {
+      display: inline-block;
+      background: rgba(169,116,88,0.15);
+      color: var(--music-accent);
+      border: 1px solid rgba(169,116,88,0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      padding: 6px 18px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    .music-hero h1 {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .music-hero h1 span {
+      color: var(--music-accent);
+    }
+
+    .music-hero p {
+      color: var(--music-muted);
+      font-size: 16px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--music-muted);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ===== NOW PLAYING FEATURED ===== */
+    .now-playing-section {
+      padding: 80px 8%;
+      background: #0d0d0d;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--music-accent);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--music-border);
+    }
+
+    .featured-track {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .featured-cover {
+      position: relative;
+      aspect-ratio: 1;
+      max-width: 420px;
+    }
+
+    .featured-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .featured-cover .play-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .featured-cover:hover .play-overlay { opacity: 1; }
+
+    .play-overlay i {
+      font-size: 52px;
+      color: #fff;
+    }
+
+    .vinyl-spin {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: conic-gradient(#1a1a1a 0deg, #2a2a2a 90deg, #1a1a1a 180deg, #2a2a2a 270deg);
+      border: 3px solid #333;
+      animation: vinylSpin 4s linear infinite;
+    }
+
+    .vinyl-spin::after {
+      content: '';
+      position: absolute;
+      inset: 38%;
+      border-radius: 50%;
+      background: var(--music-accent);
+    }
+
+    @keyframes vinylSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    .featured-info h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .featured-info .artist {
+      font-size: 15px;
+      color: var(--music-accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .featured-info .desc {
+      font-size: 14px;
+      color: var(--music-muted);
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .track-meta {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-item span:first-child {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--music-muted);
+    }
+
+    .meta-item span:last-child {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .featured-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-stream {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-stream.primary {
+      background: var(--music-accent);
+      color: #fff;
+    }
+
+    .btn-stream.primary:hover { background: #c4895f; transform: translateY(-2px); }
+
+    .btn-stream.ghost {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .btn-stream.ghost:hover {
+      border-color: var(--music-accent);
+      color: var(--music-accent);
+    }
+
+    /* ===== TRACK LIST ===== */
+    .tracklist-section {
+      padding: 80px 8%;
+    }
+
+    .tracklist {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .track-row {
+      display: grid;
+      grid-template-columns: 40px 56px 1fr auto auto;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .track-row:hover {
+      background: rgba(169,116,88,0.08);
+    }
+
+    .track-num {
+      font-size: 13px;
+      color: var(--music-muted);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .track-row:hover .track-num { display: none; }
+    .track-play-icon { display: none; color: var(--music-accent); font-size: 14px; }
+    .track-row:hover .track-play-icon { display: block; }
+
+    .track-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .track-details h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .track-details p {
+      font-size: 12px;
+      color: var(--music-muted);
+    }
+
+    .track-duration {
+      font-size: 13px;
+      color: var(--music-muted);
+    }
+
+    .track-stream-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--music-muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      transition: 0.2s;
+    }
+
+    .track-stream-link:hover {
+      border-color: var(--music-accent);
+      color: var(--music-accent);
+    }
+
+    /* ===== STREAMING PLATFORMS ===== */
+    .platforms-section {
+      padding: 80px 8%;
+      background: #0d0d0d;
+      text-align: center;
+    }
+
+    .platforms-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .platforms-section p {
+      color: var(--music-muted);
+      margin-bottom: 50px;
+      font-size: 14px;
+    }
+
+    .platforms-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .platform-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 28px;
+      background: var(--music-card);
+      border: 1px solid var(--music-border);
+      border-radius: 14px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s;
+      min-width: 180px;
+    }
+
+    .platform-card:hover {
+      border-color: var(--music-accent);
+      transform: translateY(-4px);
+      background: rgba(169,116,88,0.08);
+    }
+
+    .platform-card i {
+      font-size: 22px;
+    }
+
+    .platform-card.spotify i { color: #1db954; }
+    .platform-card.audiomack i { color: #f2921d; }
+    .platform-card.apple i { color: #fc3c44; }
+    .platform-card.youtube i { color: #ff0000; }
+    .platform-card.tidal i { color: #00ffff; }
+
+    /* ===== VIDEOS ===== */
+    .videos-section {
+      padding: 80px 8%;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .video-card {
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--music-card);
+      border: 1px solid var(--music-border);
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--music-accent);
+    }
+
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .video-card:hover .video-thumb img { transform: scale(1.05); }
+
+    .video-play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+    }
+
+    .video-play-btn i {
+      width: 52px;
+      height: 52px;
+      background: var(--music-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: 0.2s;
+    }
+
+    .video-card:hover .video-play-btn i {
+      transform: scale(1.12);
+      background: #c4895f;
+    }
+
+    .video-info {
+      padding: 16px 18px;
+    }
+
+    .video-info h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .video-info p {
+      font-size: 12px;
+      color: var(--music-muted);
+    }
+
+    .video-tag {
+      display: inline-block;
+      font-size: 10px;
+      background: rgba(169,116,88,0.15);
+      color: var(--music-accent);
+      border-radius: 10px;
+      padding: 3px 9px;
+      margin-bottom: 7px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Center hero buttons */
+.music-hero .featured-actions {
+  justify-content: center;
+}
+
+/* Center footer */
+.footer .footer-container {
+  justify-content: center;
+  text-align: center;
+}
+
+.footer .footer-brand {
+  text-align: center;
+}
+
+.footer .footer-links {
+  justify-content: center;
+}
+
+.footer .footer-col {
+  align-items: center;
+  text-align: center;
+}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .featured-track { grid-template-columns: 1fr; gap: 36px; }
+      .featured-cover { max-width: 100%; }
+      .track-row { grid-template-columns: 36px 44px 1fr auto; }
+      .track-stream-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Thëßrøthërs collection</h2>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="lifestyle.html">Lifestyle</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="music-hero">
+      <div class="vinyl-bg"></div>
+      <div class="music-hero-content">
+        <div class="music-hero-tag">Thëßrøthërs Music</div>
+        <h1>Sound &<br><span>Culture</span></h1>
+        <p>Afrobeats · Hip-Hop · Street · Culture</p>
+        <div class="featured-actions">
+          <a href="#latest" class="btn-stream primary">
+            <i class="fas fa-headphones"></i> Latest Drops
+          </a>
+          <a href="#platforms" class="btn-stream ghost">
+            <i class="fas fa-music"></i> Stream Now
+          </a>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+        Scroll
+      </div>
+    </section>
+
+    <!-- FEATURED TRACK -->
+    <section class="now-playing-section" id="latest">
+      <div class="section-label">Latest Drop</div>
+      <div class="featured-track">
+        <div class="featured-cover">
+          <img src="img/Nomadic1.jpg" alt="Latest Drop">
+          <div class="play-overlay">
+            <i class="fas fa-play"></i>
+          </div>
+          <div class="vinyl-spin"></div>
+        </div>
+        <div class="featured-info">
+          <h2>Nomadic Sounds Vol. 1</h2>
+          <p class="artist">Thëßrøthërs</p>
+          <p class="desc">The debut project from The Brothers Collection — a sonic journey inspired by movement, freedom, and bold identity. Raw energy meets polished production across 10 tracks.</p>
+          <div class="track-meta">
+            <div class="meta-item">
+              <span>Tracks</span>
+              <span>10</span>
+            </div>
+            <div class="meta-item">
+              <span>Genre</span>
+              <span>Afrobeats</span>
+            </div>
+            <div class="meta-item">
+              <span>Year</span>
+              <span>2025</span>
+            </div>
+            <div class="meta-item">
+              <span>Runtime</span>
+              <span>38 mins</span>
+            </div>
+          </div>
+          <div class="featured-actions">
+            <a href="https://www.spotify.com" target="_blank" class="btn-stream primary">
+              <i class="fab fa-spotify"></i> Listen on Spotify
+            </a>
+            <a href="https://audiomack.com" target="_blank" class="btn-stream ghost">
+              <i class="fas fa-music"></i> Audiomack
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKLIST -->
+    <section class="tracklist-section" id="tracklist">
+      <div class="section-label">Tracklist</div>
+      <div class="tracklist">
+
+        <div class="track-row">
+          <span class="track-num">1</span>
+          <i class="fas fa-play track-play-icon"></i>
+          <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 1">
+          <div class="track-details">
+            <h4>Nomadic Intro</h4>
+            <p>Thëßrøthërs</p>
+          </div>
+          <span class="track-duration">1:42</span>
+          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
+            <i class="fab fa-spotify"></i> Stream
+          </a>
+        </div>
+
+        <div class="track-row">
+          <span class="track-num">2</span>
+          <i class="fas fa-play track-play-icon"></i>
+          <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 2">
+          <div class="track-details">
+            <h4>Move Different</h4>
+            <p>Thëßrøthërs</p>
+          </div>
+          <span class="track-duration">3:18</span>
+          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
+            <i class="fab fa-spotify"></i> Stream
+          </a>
+        </div>
+
+        <div class="track-row">
+          <span class="track-num">3</span>
+          <i class="fas fa-play track-play-icon"></i>
+          <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 3">
+          <div class="track-details">
+            <h4>Street Culture</h4>
+            <p>Thëßrøthërs</p>
+          </div>
+          <span class="track-duration">3:45</span>
+          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
+            <i class="fab fa-spotify"></i> Stream
+          </a>
+        </div>
+
+        <div class="track-row">
+          <span class="track-num">4</span>
+          <i class="fas fa-play track-play-icon"></i>
+          <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 4">
+          <div class="track-details">
+            <h4>Desert Road</h4>
+            <p>Thëßrøthërs</p>
+          </div>
+          <span class="track-duration">4:02</span>
+          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
+            <i class="fab fa-spotify"></i> Stream
+          </a>
+        </div>
+
+        <div class="track-row">
+          <span class="track-num">5</span>
+          <i class="fas fa-play track-play-icon"></i>
+          <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 5">
+          <div class="track-details">
+            <h4>Identity</h4>
+            <p>Thëßrøthërs</p>
+          </div>
+          <span class="track-duration">3:55</span>
+          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
+            <i class="fab fa-spotify"></i> Stream
+          </a>
+        </div>
+
+        <div class="track-row">
+          <span class="track-num">6</span>
+          <i class="fas fa-play track-play-icon"></i>
+          <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 6">
+          <div class="track-details">
+            <h4>Lagos Nights</h4>
+            <p>Thëßrøthërs</p>
+          </div>
+          <span class="track-duration">4:11</span>
+          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
+            <i class="fab fa-spotify"></i> Stream
+          </a>
+        </div>
+
+        <div class="track-row">
+          <span class="track-num">7</span>
+          <i class="fas fa-play track-play-icon"></i>
+          <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 7">
+          <div class="track-details">
+            <h4>Free Spirit</h4>
+            <p>Thëßrøthërs</p>
+          </div>
+          <span class="track-duration">3:29</span>
+          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
+            <i class="fab fa-spotify"></i> Stream
+          </a>
+        </div>
+
+        <div class="track-row">
+          <span class="track-num">8</span>
+          <i class="fas fa-play track-play-icon"></i>
+          <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 8">
+          <div class="track-details">
+            <h4>Outro (Movement)</h4>
+            <p>Thëßrøthërs</p>
+          </div>
+          <span class="track-duration">2:58</span>
+          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
+            <i class="fab fa-spotify"></i> Stream
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STREAMING PLATFORMS -->
+    <section class="platforms-section" id="platforms">
+      <h2>Stream Everywhere</h2>
+      <p>Find our music on all major platforms</p>
+      <div class="platforms-grid">
+        <a href="https://www.spotify.com" target="_blank" class="platform-card spotify">
+          <i class="fab fa-spotify"></i> Spotify
+        </a>
+        <a href="https://audiomack.com" target="_blank" class="platform-card audiomack">
+          <i class="fas fa-music"></i> Audiomack
+        </a>
+        <a href="https://music.apple.com" target="_blank" class="platform-card apple">
+          <i class="fab fa-apple"></i> Apple Music
+        </a>
+        <a href="https://www.youtube.com" target="_blank" class="platform-card youtube">
+          <i class="fab fa-youtube"></i> YouTube
+        </a>
+        <a href="https://www.tidal.com" target="_blank" class="platform-card tidal">
+          <i class="fas fa-water"></i> Tidal
+        </a>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="videos-section" id="videos">
+      <div class="section-label">Visuals</div>
+      <div class="videos-grid">
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="img/tbc.jpg" alt="Music Video">
+            <div class="video-play-btn">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Official Video</span>
+            <h3>Move Different — Official Music Video</h3>
+            <p>2.4M views · 2025</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="img/Nomadic.jpg" alt="Behind the Scenes">
+            <div class="video-play-btn">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Behind the Scenes</span>
+            <h3>Nomadic Collection Shoot — BTS</h3>
+            <p>890K views · 2025</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="img/Nomadic1.jpg" alt="Freestyle">
+            <div class="video-play-btn">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Freestyle</span>
+            <h3>Street Culture — Live Freestyle Session</h3>
+            <p>1.1M views · 2025</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="footer" style="background:#0a0a0a">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>Thëßrøthërs</h2>
+        <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <a href="shop.html">Wears</a>
+          <a href="shop.html">Shoes</a>
+          <a href="shop.html">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h3>Entertainment</h3>
+          <a href="music.html">Music</a>
+          <a href="lifestyle.html">Lifestyle</a>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <a href="index.html#contact">Contact</a>
+          <a href="#">FAQ</a>
+          <a href="#">Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-social">
+      <p>Follow Us</p>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
+        <a href="https://www.x.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
+    <p class="footer-tagline">Welcome To The Future 🚀</p>
+  </footer>
+
+</body>
+<script src="main.js"></script>
+</html>

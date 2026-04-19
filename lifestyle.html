@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lifestyle | Thëßrøthërs Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --ls-cream: #f4e9dd;
+      --ls-brown: #a97458;
+      --ls-dark: #3a2e1e;
+      --ls-muted: #8a7060;
+      --ls-light: #dbc1ac;
+      --ls-white: #fdfaf7;
+    }
+
+    body { background: var(--ls-cream); color: var(--ls-dark); }
+
+    /* ===== HERO ===== */
+    .ls-hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    .ls-hero-left {
+      background: var(--ls-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 8%;
+      position: relative;
+    }
+
+    .ls-hero-left::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 0;
+      width: 60px;
+      height: 100%;
+      background: var(--ls-cream);
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .ls-hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ls-brown);
+      margin-bottom: 28px;
+    }
+
+    .ls-hero h1 {
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 800;
+      color: var(--ls-cream);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      margin-bottom: 28px;
+    }
+
+    .ls-hero h1 em {
+      font-style: italic;
+      color: var(--ls-brown);
+    }
+
+    .ls-hero-left p {
+      color: rgba(244,233,221,0.6);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 380px;
+      margin-bottom: 40px;
+    }
+
+    .ls-hero-stats {
+      display: flex;
+      gap: 36px;
+    }
+
+    .ls-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ls-stat span:first-child {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--ls-cream);
+    }
+
+    .ls-stat span:last-child {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ls-brown);
+    }
+
+    .ls-hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ls-hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ls-hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(58,46,30,0.3), transparent);
+      z-index: 1;
+    }
+
+    .hero-float-card {
+      position: absolute;
+      bottom: 40px;
+      left: 30px;
+      background: rgba(244,233,221,0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 18px 22px;
+      z-index: 2;
+      min-width: 200px;
+    }
+
+    .hero-float-card p {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ls-muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-float-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ls-dark);
+    }
+
+    /* ===== SECTION STRUCTURE ===== */
+    .ls-section {
+      padding: 90px 8%;
+    }
+
+    .ls-section.alt {
+      background: var(--ls-white);
+    }
+
+    .ls-section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .ls-section-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .ls-tag-line {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ls-brown);
+      margin-bottom: 10px;
+    }
+
+    .see-all {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ls-brown);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .see-all:hover { text-decoration: underline; }
+
+    /* ===== FEATURED ARTICLE ===== */
+    .featured-article {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .featured-article-img {
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .featured-article-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    .featured-article-img:hover img { transform: scale(1.04); }
+
+    .article-cat {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--ls-brown);
+      color: #fff;
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 14px;
+    }
+
+    .featured-article-text h2 {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .featured-article-text p {
+      font-size: 14px;
+      color: var(--ls-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--ls-muted);
+      margin-bottom: 24px;
+    }
+
+    .article-meta span { display: flex; align-items: center; gap: 5px; }
+
+    .read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--ls-dark);
+      color: var(--ls-cream);
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .read-btn:hover {
+      background: var(--ls-brown);
+      transform: translateY(-2px);
+    }
+
+    /* ===== ARTICLES GRID ===== */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .article-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(169,116,88,0.15);
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .article-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(58,46,30,0.1);
+      border-color: var(--ls-brown);
+    }
+
+    .article-card-img {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+
+    .article-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.35s;
+    }
+
+    .article-card:hover .article-card-img img { transform: scale(1.06); }
+
+    .article-card-body {
+      padding: 20px 20px 22px;
+    }
+
+    .article-card-body .article-cat {
+      margin-bottom: 10px;
+    }
+
+    .article-card-body h3 {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: var(--ls-dark);
+    }
+
+    .article-card-body p {
+      font-size: 13px;
+      color: var(--ls-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .article-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--ls-muted);
+    }
+
+    .article-card-footer a {
+      color: var(--ls-brown);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .article-card-footer a:hover { text-decoration: underline; }
+
+    /* ===== STYLE LOOKBOOK ===== */
+    .lookbook-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 16px;
+    }
+
+    .look-item {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .look-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .look-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 200px;
+      transition: 0.35s;
+    }
+
+    .look-item:hover img { transform: scale(1.05); }
+
+    .look-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(58,46,30,0.8) 0%, transparent 50%);
+      opacity: 0;
+      transition: 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .look-item:hover .look-overlay { opacity: 1; }
+
+    .look-overlay span {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ===== TIPS SECTION ===== */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .tip-card {
+      background: var(--ls-dark);
+      color: var(--ls-cream);
+      border-radius: 16px;
+      padding: 30px 24px;
+      transition: 0.25s;
+    }
+
+    .tip-card:hover {
+      transform: translateY(-5px);
+      background: var(--ls-brown);
+    }
+
+    .tip-number {
+      font-size: 48px;
+      font-weight: 800;
+      color: rgba(244,233,221,0.12);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .tip-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--ls-cream);
+    }
+
+    .tip-card p {
+      font-size: 13px;
+      color: rgba(244,233,221,0.65);
+      line-height: 1.6;
+    }
+
+    /* ===== NEWSLETTER ===== */
+    .newsletter-section {
+      padding: 100px 8%;
+      background: var(--ls-dark);
+      text-align: center;
+    }
+
+    .newsletter-section h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      color: var(--ls-cream);
+      margin-bottom: 14px;
+    }
+
+    .newsletter-section h2 span { color: var(--ls-brown); }
+
+    .newsletter-section p {
+      color: rgba(244,233,221,0.6);
+      font-size: 15px;
+      margin-bottom: 36px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 480px;
+      margin: 0 auto;
+      gap: 0;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 20px;
+      background: rgba(244,233,221,0.08);
+      border: 1.5px solid rgba(244,233,221,0.15);
+      border-right: none;
+      border-radius: 10px 0 0 10px;
+      color: var(--ls-cream);
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .newsletter-form input::placeholder { color: rgba(244,233,221,0.35); }
+    .newsletter-form input:focus { border-color: var(--ls-brown); }
+
+    .newsletter-form button {
+      padding: 14px 24px;
+      background: var(--ls-brown);
+      color: #fff;
+      border: none;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover { background: #c4895f; }
+
+    /* Center footer */
+.footer .footer-container {
+  justify-content: center;
+  text-align: center;
+}
+
+.footer .footer-brand {
+  text-align: center;
+}
+
+.footer .footer-links {
+  justify-content: center;
+}
+
+.footer .footer-col {
+  align-items: center;
+  text-align: center;
+}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .ls-hero { grid-template-columns: 1fr; min-height: auto; }
+      .ls-hero-left::after { display: none; }
+      .ls-hero-right { height: 50vh; }
+      .featured-article { grid-template-columns: 1fr; }
+      .lookbook-grid { grid-template-columns: 1fr 1fr; }
+      .look-item:first-child { grid-column: span 2; grid-row: span 1; }
+    }
+
+    @media (max-width: 600px) {
+      .lookbook-grid { grid-template-columns: 1fr; }
+      .look-item:first-child { grid-column: span 1; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form input { border-right: 1.5px solid rgba(244,233,221,0.15); border-bottom: none; border-radius: 10px 10px 0 0; }
+      .newsletter-form button { border-radius: 0 0 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Thëßrøthërs collection</h2>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="ls-hero">
+      <div class="ls-hero-left">
+        <span class="ls-hero-tag">Thëßrøthërs Lifestyle</span>
+        <h1>Live<br><em>Bold.</em><br>Move<br>Free.</h1>
+        <p>Culture, fashion, and the stories that define a generation. Explore how The Brothers Collection lives beyond the clothes.</p>
+        <div class="ls-hero-stats">
+          <div class="ls-stat">
+            <span>50+</span>
+            <span>Stories</span>
+          </div>
+          <div class="ls-stat">
+            <span>12</span>
+            <span>Categories</span>
+          </div>
+          <div class="ls-stat">
+            <span>Weekly</span>
+            <span>New Drops</span>
+          </div>
+        </div>
+      </div>
+      <div class="ls-hero-right">
+        <img src="img/tbc.jpg" alt="Lifestyle Hero">
+        <div class="hero-float-card">
+          <p>Latest Story</p>
+          <h4>Street Culture in Lagos 2025</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED ARTICLE -->
+    <section class="ls-section">
+      <div class="ls-section-header">
+        <div>
+          <p class="ls-tag-line">Editor's Pick</p>
+          <h2>Featured Story</h2>
+        </div>
+        <a href="#" class="see-all">View all stories <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="featured-article">
+        <div class="featured-article-img">
+          <img src="img/tbc.jpg" alt="Featured Article">
+        </div>
+        <div class="featured-article-text">
+          <span class="article-cat">Culture</span>
+          <h2>How Street Fashion Became the Language of a Generation</h2>
+          <div class="article-meta">
+            <span><i class="fas fa-calendar"></i> Jan 2025</span>
+            <span><i class="fas fa-clock"></i> 6 min read</span>
+            <span><i class="fas fa-eye"></i> 14.2K views</span>
+          </div>
+          <p>From the streets of Lagos to global runways, the Nomadic generation is redefining what fashion means — not as status, but as identity, freedom, and movement.</p>
+          <a href="#" class="read-btn">
+            Read Story <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLES GRID -->
+    <section class="ls-section alt">
+      <div class="ls-section-header">
+        <div>
+          <p class="ls-tag-line">Latest</p>
+          <h2>Stories & Culture</h2>
+        </div>
+        <a href="#" class="see-all">See all <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="articles-grid">
+
+        <div class="article-card">
+          <div class="article-card-img">
+            <img src="img/Nomadic.jpg" alt="Style Guide">
+          </div>
+          <div class="article-card-body">
+            <span class="article-cat">Style</span>
+            <h3>The Nomadic Style Guide: How to Layer Like a Pro</h3>
+            <p>Master the art of layering with pieces from the Nomadic Collection for any occasion.</p>
+            <div class="article-card-footer">
+              <span><i class="fas fa-clock" style="margin-right:4px"></i> 4 min read</span>
+              <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="article-card-img">
+            <img src="img/Nomadic1.jpg" alt="Music & Fashion">
+          </div>
+          <div class="article-card-body">
+            <span class="article-cat">Music</span>
+            <h3>When Music Meets Fashion: The TBC Story</h3>
+            <p>How the brothers built a brand that lives at the intersection of sound and style.</p>
+            <div class="article-card-footer">
+              <span><i class="fas fa-clock" style="margin-right:4px"></i> 5 min read</span>
+              <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="article-card-img">
+            <img src="img/tbc.jpg" alt="Lagos Scene">
+          </div>
+          <div class="article-card-body">
+            <span class="article-cat">Culture</span>
+            <h3>Lagos Street Scene: The Brands Shaping a City</h3>
+            <p>A look at the underground brands, artists, and creators building Lagos's next identity.</p>
+            <div class="article-card-footer">
+              <span><i class="fas fa-clock" style="margin-right:4px"></i> 7 min read</span>
+              <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="article-card-img">
+            <img src="img/Nomadic.jpg" alt="Sneaker Culture">
+          </div>
+          <div class="article-card-body">
+            <span class="article-cat">Sneakers</span>
+            <h3>Sneaker Culture in Nigeria: Then vs Now</h3>
+            <p>From AJ1s to custom AF1s — how sneakers became a cultural statement in Nigeria.</p>
+            <div class="article-card-footer">
+              <span><i class="fas fa-clock" style="margin-right:4px"></i> 5 min read</span>
+              <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="article-card-img">
+            <img src="img/Nomadic1.jpg" alt="Self Expression">
+          </div>
+          <div class="article-card-body">
+            <span class="article-cat">Identity</span>
+            <h3>Dress for Yourself: Self-Expression Through Fashion</h3>
+            <p>Why the most powerful style choice you can make is dressing for who you are, not who they expect.</p>
+            <div class="article-card-footer">
+              <span><i class="fas fa-clock" style="margin-right:4px"></i> 3 min read</span>
+              <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="article-card-img">
+            <img src="img/tbc.jpg" alt="Festival Style">
+          </div>
+          <div class="article-card-body">
+            <span class="article-cat">Events</span>
+            <h3>Festival Season Fits: What We're Wearing in 2025</h3>
+            <p>Our picks for the boldest, most comfortable fits to wear at every event this season.</p>
+            <div class="article-card-footer">
+              <span><i class="fas fa-clock" style="margin-right:4px"></i> 4 min read</span>
+              <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LOOKBOOK -->
+    <section class="ls-section">
+      <div class="ls-section-header">
+        <div>
+          <p class="ls-tag-line">Visual</p>
+          <h2>Style Lookbook</h2>
+        </div>
+        <a href="shop.html" class="see-all">Shop the looks <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="lookbook-grid">
+        <div class="look-item">
+          <img src="img/tbc.jpg" alt="Look 1">
+          <div class="look-overlay">
+            <span><i class="fas fa-bag-shopping"></i> Shop This Look</span>
+          </div>
+        </div>
+        <div class="look-item">
+          <img src="img/Nomadic.jpg" alt="Look 2">
+          <div class="look-overlay">
+            <span><i class="fas fa-bag-shopping"></i> Shop This Look</span>
+          </div>
+        </div>
+        <div class="look-item">
+          <img src="img/Nomadic1.jpg" alt="Look 3">
+          <div class="look-overlay">
+            <span><i class="fas fa-bag-shopping"></i> Shop This Look</span>
+          </div>
+        </div>
+        <div class="look-item">
+          <img src="img/Nomadic.jpg" alt="Look 4">
+          <div class="look-overlay">
+            <span><i class="fas fa-bag-shopping"></i> Shop This Look</span>
+          </div>
+        </div>
+        <div class="look-item">
+          <img src="img/tbc.jpg" alt="Look 5">
+          <div class="look-overlay">
+            <span><i class="fas fa-bag-shopping"></i> Shop This Look</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STYLE TIPS -->
+    <section class="ls-section alt">
+      <div class="ls-section-header">
+        <div>
+          <p class="ls-tag-line">Tips</p>
+          <h2>Style Rules We Live By</h2>
+        </div>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-number">01</div>
+          <h3>Wear Your Identity</h3>
+          <p>Don't dress to impress — dress to express. Your style should tell your story without you saying a word.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-number">02</div>
+          <h3>Comfort is Non-Negotiable</h3>
+          <p>The best outfit is one you can move in. Style and comfort aren't opposites — they're partners.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-number">03</div>
+          <h3>Invest in Basics</h3>
+          <p>One great white tee, one perfect pair of trousers. Build your wardrobe from the foundation up.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-number">04</div>
+          <h3>Break the Rules</h3>
+          <p>Style rules exist to be broken. The most iconic looks were once called wrong. Own it anyway.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+      <h2>Stay in the <span>Loop</span></h2>
+      <p>Weekly culture drops, style guides, and exclusive stories — straight to your inbox.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Enter your email address">
+        <button type="submit">Subscribe</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>Thëßrøthërs</h2>
+        <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <a href="shop.html">Wears</a>
+          <a href="shop.html">Shoes</a>
+          <a href="shop.html">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h3>Entertainment</h3>
+          <a href="music.html">Music</a>
+          <a href="lifestyle.html">Lifestyle</a>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <a href="index.html#contact">Contact</a>
+          <a href="#">FAQ</a>
+          <a href="#">Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-social">
+      <p>Follow Us</p>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
+        <a href="https://www.x.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
+    <p class="footer-tagline">Welcome To The Future 🚀</p>
+  </footer>
+
+</body>
+<script src="main.js"></script>
+</html>
