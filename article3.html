@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lagos Street Scene: The Brands Shaping a City | Thëßrøthërs Collection</title>
+
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <style>
+    body{
+      background: var(--cream);
+      color: var(--brown-dark);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.8;
+    }
+
+    .blog-hero{
+      height: 70vh;
+      background:
+        linear-gradient(rgba(20,20,20,0.55), rgba(20,20,20,0.65)),
+        url('img/lagos-street-scene.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 6%;
+    }
+
+    .blog-hero-content{
+      max-width: 850px;
+      color: #fff;
+    }
+
+    .blog-tag{
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .blog-hero h1{
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .blog-meta{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .blog-container{
+      width: min(900px, 92%);
+      margin: auto;
+      padding: 80px 0;
+    }
+
+    .intro-text{
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 50px;
+    }
+
+    .blog-section{
+      margin-bottom: 60px;
+    }
+
+    .blog-section h2{
+      font-size: 2rem;
+      margin-bottom: 18px;
+      color: var(--brown-dark);
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .blog-section h2::before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 6px;
+      height: 85%;
+      background: var(--brown-main);
+      border-radius: 4px;
+    }
+
+    .blog-section p{
+      margin-bottom: 20px;
+      color: #4a4035;
+      font-size: 1rem;
+    }
+
+    .quote-box{
+      margin: 50px 0;
+      padding: 35px;
+      background: #fff;
+      border-left: 5px solid var(--brown-main);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .quote-box p{
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.7;
+      color: var(--brown-dark);
+      margin: 0;
+    }
+
+    .image-banner{
+      margin: 50px 0;
+      border-radius: 24px;
+      overflow: hidden;
+      height: 420px;
+    }
+
+    .image-banner img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .closing-box{
+      margin-top: 80px;
+      padding: 45px;
+      border-radius: 24px;
+      background: var(--brown-dark);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .closing-box h3{
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .closing-box p{
+      color: rgba(255,255,255,0.8);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .back-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 14px 24px;
+      background: var(--brown-main);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .back-btn:hover{
+      transform: translateY(-3px);
+      background: #5d4731;
+    }
+
+    @media(max-width:768px){
+
+      .blog-hero{
+        height: 60vh;
+      }
+
+      .blog-container{
+        padding: 60px 0;
+      }
+
+      .blog-section h2{
+        font-size: 1.6rem;
+      }
+
+      .quote-box{
+        padding: 24px;
+      }
+
+      .quote-box p{
+        font-size: 1.1rem;
+      }
+
+      .image-banner{
+        height: 260px;
+      }
+
+      .closing-box{
+        padding: 30px 22px;
+      }
+
+      .closing-box h3{
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+
+      <span class="blog-tag">Culture • Fashion • Lifestyle</span>
+
+      <h1>Lagos Street Scene: The Brands Shaping a City</h1>
+
+      <div class="blog-meta">
+        <span>By TBC Editorial</span>
+        <span>6 Min Read</span>
+        <span>2026</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <main class="blog-container">
+
+    <p class="intro-text">
+      Lagos is more than a city. It is movement, energy, survival, creativity, and identity all happening at once. Every street corner tells a story. Every outfit says something. From Lekki to Yaba, Surulere to Ikeja, fashion in Lagos has evolved into a living language — one spoken by a generation determined to stand out.
+    </p>
+
+    <div class="blog-section">
+      <h2>The Rise of Streetwear in Lagos</h2>
+
+      <p>
+        A few years ago, streetwear in Nigeria was still heavily inspired by international culture. People copied trends from New York, London, Tokyo, and Paris without adding much local identity. But over time, something changed. Young creatives across Lagos began mixing global influence with Nigerian culture, creating a style that felt original, bold, and unapologetic.
+      </p>
+
+      <p>
+        Today, Lagos streetwear is one of the fastest-growing fashion movements in Africa. Oversized tees, cargos, vintage denim, statement sneakers, local graphics, and experimental silhouettes have become part of the city’s everyday uniform. What makes it powerful is not just the clothes — it is the attitude behind them.
+      </p>
+
+      <p>
+        Fashion in Lagos reflects hustle culture, music, nightlife, creativity, and ambition. It represents people trying to build identities in a city that moves fast and never waits.
+      </p>
+    </div>
+
+    <div class="image-banner">
+      <img src="img/lagos-fashion-2.avif" alt="Lagos Street Fashion">
+    </div>
+
+    <div class="blog-section">
+      <h2>Fashion and Music Go Hand in Hand</h2>
+
+      <p>
+        One reason Lagos fashion evolved so quickly is because of music culture. Nigerian artists no longer just create songs — they create aesthetics. Every album rollout, music video, and live performance influences how young people dress.
+      </p>
+
+      <p>
+        Afrobeats artists introduced luxury streetwear into mainstream culture, while underground creatives pushed more experimental looks. Fashion became part of storytelling. A fit could say confidence, rebellion, success, mystery, or freedom before a single word was spoken.
+      </p>
+
+      <p>
+        Social media accelerated everything. Instagram, TikTok, and X turned Lagos into a visual playground where trends move at lightning speed. A small brand can gain attention overnight if the right creator wears it.
+      </p>
+    </div>
+
+    <div class="quote-box">
+      <p>
+        “In Lagos, fashion is not just about looking good. It’s about proving who you are before you even speak.”
+      </p>
+    </div>
+
+    <div class="blog-section">
+      <h2>The New Generation of Brands</h2>
+
+      <p>
+        Independent brands are now shaping the identity of Lagos fashion culture. Instead of trying to imitate foreign labels, many Nigerian creatives are building brands rooted in local stories, African identity, and youth culture.
+      </p>
+
+      <p>
+        These brands understand that people no longer buy clothes only for fashion — they buy meaning. Young consumers want pieces connected to a lifestyle, a mindset, or a movement.
+      </p>
+
+      <p>
+        That is why modern Lagos brands focus heavily on storytelling, visuals, music collaborations, pop culture, and online communities. They are not simply selling hoodies or sneakers. They are building culture.
+      </p>
+    </div>
+
+    <div class="image-banner">
+      <img src="img/lagos-fashion-2.avif" alt="Streetwear Culture">
+    </div>
+
+    <div class="blog-section">
+      <h2>Why Identity Matters More Than Trends</h2>
+
+      <p>
+        The biggest shift happening in Lagos fashion is the move away from blind trend-following. Young people now care more about self-expression than fitting in. They mix thrifted pieces with designer items. They wear traditional elements with modern silhouettes. They experiment freely.
+      </p>
+
+      <p>
+        In many ways, Lagos street fashion reflects the mindset of the city itself: unpredictable, fearless, creative, and ambitious. There are no strict rules anymore. Style is becoming personal again.
+      </p>
+
+      <p>
+        This freedom has allowed smaller brands and independent creatives to thrive. Authenticity now matters more than perfection. A brand with a strong message and identity can connect deeply with people, even without massive budgets.
+      </p>
+    </div>
+
+    <div class="blog-section">
+      <h2>The Future of Lagos Fashion</h2>
+
+      <p>
+        Lagos is slowly becoming one of Africa’s strongest cultural capitals. Fashion, music, art, photography, and lifestyle are blending together into one creative ecosystem.
+      </p>
+
+      <p>
+        As more Nigerian creatives gain international attention, Lagos street culture will continue influencing global fashion conversations. But the most exciting part is that the movement is still growing. New voices, brands, and styles appear every day.
+      </p>
+
+      <p>
+        The future belongs to brands that understand culture, not just clothing. Brands that tell stories people connect with emotionally. Brands that feel alive.
+      </p>
+    </div>
+
+    <div class="closing-box">
+      <h3>The City Never Stops Moving</h3>
+
+      <p>
+        Lagos fashion is raw, expressive, and constantly evolving. It is powered by a generation using creativity as identity and style as language. And as the culture grows, the streets will continue shaping the future of fashion in ways the world cannot ignore.
+      </p>
+
+      <a href="lifestyle.html" class="back-btn">
+        ← Back to Blog
+      </a>
+    </div>
+
+  </main>
+
+</body>
+</html>

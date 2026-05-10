@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sneaker Culture in Nigeria: Then vs Now | Thëßrøthërs Collection</title>
+
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <style>
+    body{
+      background: var(--cream);
+      color: var(--brown-dark);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.8;
+    }
+
+    .blog-hero{
+      height: 70vh;
+      background:
+        linear-gradient(rgba(15,15,15,0.55), rgba(15,15,15,0.72)),
+        url('img/sneaker-culture-hero.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 6%;
+    }
+
+    .blog-hero-content{
+      max-width: 900px;
+      color: #fff;
+    }
+
+    .blog-tag{
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .blog-hero h1{
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .blog-meta{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.82);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .blog-container{
+      width: min(900px, 92%);
+      margin: auto;
+      padding: 80px 0;
+    }
+
+    .intro-text{
+      font-size: 1.12rem;
+      color: var(--muted);
+      margin-bottom: 50px;
+    }
+
+    .blog-section{
+      margin-bottom: 60px;
+    }
+
+    .blog-section h2{
+      font-size: 2rem;
+      margin-bottom: 18px;
+      color: var(--brown-dark);
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .blog-section h2::before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 6px;
+      height: 85%;
+      background: var(--brown-main);
+      border-radius: 4px;
+    }
+
+    .blog-section p{
+      margin-bottom: 20px;
+      color: #4b4035;
+      font-size: 1rem;
+    }
+
+    .image-banner{
+      margin: 50px 0;
+      border-radius: 24px;
+      overflow: hidden;
+      height: 420px;
+    }
+
+    .image-banner img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .quote-box{
+      margin: 55px 0;
+      background: #fff;
+      padding: 35px;
+      border-left: 5px solid var(--brown-main);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .quote-box p{
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--brown-dark);
+      line-height: 1.7;
+    }
+
+    .timeline{
+      margin: 60px 0;
+      display: grid;
+      gap: 24px;
+    }
+
+    .timeline-card{
+      background: #fff;
+      border: 1px solid rgba(58,46,30,0.08);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+
+    .timeline-card span{
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--brown-main);
+      font-weight: 700;
+    }
+
+    .timeline-card h3{
+      margin: 10px 0 14px;
+      font-size: 1.4rem;
+      color: var(--brown-dark);
+    }
+
+    .timeline-card p{
+      color: #55493f;
+      margin: 0;
+    }
+
+    .closing-box{
+      margin-top: 80px;
+      padding: 45px;
+      border-radius: 24px;
+      background: var(--brown-dark);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .closing-box h3{
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .closing-box p{
+      max-width: 700px;
+      margin: auto;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .back-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 14px 24px;
+      background: var(--brown-main);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .back-btn:hover{
+      transform: translateY(-3px);
+      background: #5f4831;
+    }
+
+    @media(max-width:768px){
+
+      .blog-hero{
+        height: 60vh;
+      }
+
+      .blog-container{
+        padding: 60px 0;
+      }
+
+      .blog-section h2{
+        font-size: 1.6rem;
+      }
+
+      .image-banner{
+        height: 260px;
+      }
+
+      .quote-box{
+        padding: 24px;
+      }
+
+      .quote-box p{
+        font-size: 1.1rem;
+      }
+
+      .timeline-card{
+        padding: 22px;
+      }
+
+      .closing-box{
+        padding: 32px 22px;
+      }
+
+      .closing-box h3{
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+
+      <span class="blog-tag">Fashion • Culture • Sneakers</span>
+
+      <h1>Sneaker Culture in Nigeria: Then vs Now</h1>
+
+      <div class="blog-meta">
+        <span>By TBC Editorial</span>
+        <span>6 Min Read</span>
+        <span>2026</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOG CONTENT -->
+  <main class="blog-container">
+
+    <p class="intro-text">
+      Sneakers in Nigeria were once just footwear. Today, they are identity, status, creativity, and culture. From school corridors and football fields to fashion shoots and nightlife scenes, sneakers have evolved into one of the strongest style symbols of an entire generation.
+    </p>
+
+    <div class="blog-section">
+      <h2>Back When Sneakers Were Simple</h2>
+
+      <p>
+        Years ago, sneaker culture in Nigeria was much simpler than it is today. Most people wore sneakers mainly for comfort, sports, or school activities. Popular choices were practical, durable, and affordable rather than rare or fashionable.
+      </p>
+
+      <p>
+        During the early 2000s and even before then, brands like Nike, Adidas, Puma, Converse, and Reebok were already known in Nigeria, but access was limited. Most people bought pairs through local stores, imported items from abroad, or second-hand markets.
+      </p>
+
+      <p>
+        At the time, owning clean sneakers was enough. People cared more about freshness and durability than hype drops or exclusive collaborations.
+      </p>
+    </div>
+
+    <div class="image-banner">
+      <img src="img/sneaker-old-school.jpg" alt="Old School Sneaker Culture">
+    </div>
+
+    <div class="blog-section">
+      <h2>The Rise of Sneaker Hype</h2>
+
+      <p>
+        Everything started changing when music, social media, and global fashion culture became deeply connected to Nigerian youth culture. Artists, influencers, athletes, and creatives began introducing sneaker culture as part of lifestyle branding.
+      </p>
+
+      <p>
+        Suddenly, sneakers became more than shoes. Limited editions, designer collaborations, Air Jordans, Yeezys, Dunks, New Balance pairs, and luxury sneakers became symbols of taste and identity.
+      </p>
+
+      <p>
+        Nigerian youth began paying attention to details like colorways, silhouettes, release dates, and styling combinations. Sneaker culture transformed into an entire community.
+      </p>
+    </div>
+
+    <div class="quote-box">
+      <p>
+        “In today’s Nigeria, sneakers are no longer just worn — they are collected, styled, photographed, and celebrated.”
+      </p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-card">
+        <span>Then</span>
+        <h3>Sneakers Were Functional</h3>
+        <p>
+          Most people bought sneakers based on durability and comfort. Style mattered, but exclusivity and hype were not major conversations yet.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <span>Now</span>
+        <h3>Sneakers Are Cultural Symbols</h3>
+        <p>
+          Sneakers now represent personality, social influence, fashion awareness, and creative expression across Nigerian youth culture.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <span>Then</span>
+        <h3>Limited Access</h3>
+        <p>
+          Finding authentic international sneakers used to be difficult and expensive. Most people depended on imports from relatives abroad.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <span>Now</span>
+        <h3>Global Culture Is Instant</h3>
+        <p>
+          Social media and online stores made trends spread instantly. Nigerian sneaker lovers now follow global releases in real time.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="blog-section">
+      <h2>Streetwear Changed Everything</h2>
+
+      <p>
+        The rise of Nigerian streetwear played a huge role in pushing sneaker culture forward. Oversized fits, cargos, stacked denim, hoodies, and vintage fashion all created a stronger connection between sneakers and personal style.
+      </p>
+
+      <p>
+        Sneakers became the centerpiece of outfits. People started building entire looks around one pair. Fashion photography, Instagram pages, TikTok edits, and style creators amplified the movement even more.
+      </p>
+
+      <p>
+        Lagos especially became a major hotspot for sneaker culture. Events, pop-ups, thrift communities, and local fashion brands helped build an ecosystem where sneakers became part of daily creative expression.
+      </p>
+    </div>
+
+    <div class="image-banner">
+      <img src="img/sneaker-modern.jpg" alt="Modern Sneaker Fashion">
+    </div>
+
+    <div class="blog-section">
+      <h2>The Influence of Nigerian Music</h2>
+
+      <p>
+        Nigerian artists helped make sneakers mainstream fashion statements. Music videos, album covers, performances, and social media posts constantly showcased new styles and trends.
+      </p>
+
+      <p>
+        Afrobeats culture introduced a generation to luxury fashion mixed with streetwear aesthetics. Sneakers became linked with confidence, success, ambition, and modern youth identity.
+      </p>
+
+      <p>
+        Today, many young Nigerians discover sneaker trends through artists before fashion magazines or traditional media even mention them.
+      </p>
+    </div>
+
+    <div class="blog-section">
+      <h2>What the Future Looks Like</h2>
+
+      <p>
+        Sneaker culture in Nigeria is still evolving rapidly. Local creatives are beginning to build sneaker-focused brands, fashion communities, and lifestyle movements inspired by African identity.
+      </p>
+
+      <p>
+        As fashion and music continue blending together, sneaker culture will likely become even bigger than it is now. Future trends may focus more on originality, storytelling, sustainability, and African-inspired design.
+      </p>
+
+      <p>
+        One thing is certain: sneakers are no longer just trends in Nigeria. They are part of the culture itself.
+      </p>
+    </div>
+
+    <div class="closing-box">
+
+      <h3>More Than Just Shoes</h3>
+
+      <p>
+        From dusty football fields to luxury fashion shoots, sneaker culture in Nigeria has transformed into a movement powered by youth, creativity, and self-expression. The culture keeps evolving — and the streets are leading the way.
+      </p>
+
+      <a href="lifestyle.html" class="back-btn">
+        ← Back to Blog
+      </a>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

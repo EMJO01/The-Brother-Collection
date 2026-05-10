@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>When Music Meets Fashion: The TBC Story | Thëßrøthërs Collection</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    :root{
+      --brown-dark:#2d2218;
+      --brown-main:#5c4632;
+      --brown-light:#cbb89d;
+      --cream:#f8f4ef;
+      --muted:#8b7d6b;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--cream);
+      color:var(--brown-dark);
+      line-height:1.8;
+    }
+
+    /* HERO */
+    .blog-hero{
+      position:relative;
+      height:75vh;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .blog-hero img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .blog-hero::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.75)
+      );
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      width:90%;
+      max-width:850px;
+      color:white;
+    }
+
+    .hero-tag{
+      display:inline-block;
+      padding:8px 18px;
+      border:1px solid rgba(255,255,255,0.35);
+      border-radius:30px;
+      font-size:12px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:20px;
+      backdrop-filter:blur(6px);
+    }
+
+    .hero-content h1{
+      font-size:clamp(2.5rem,7vw,5rem);
+      line-height:1.1;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:15px;
+      color:rgba(255,255,255,0.82);
+      letter-spacing:2px;
+    }
+
+    /* ARTICLE */
+    .blog-container{
+      width:90%;
+      max-width:950px;
+      margin:auto;
+      padding:80px 0;
+    }
+
+    .article-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:20px;
+      margin-bottom:40px;
+      padding-bottom:20px;
+      border-bottom:1px solid rgba(92,70,50,0.12);
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .article-meta span{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .blog-container p{
+      margin-bottom:28px;
+      font-size:17px;
+      color:#4b4034;
+    }
+
+    .blog-container h2{
+      font-size:32px;
+      margin:60px 0 18px;
+      line-height:1.2;
+      color:var(--brown-dark);
+    }
+
+    .highlight-box{
+      background:white;
+      border-left:5px solid var(--brown-main);
+      padding:28px;
+      border-radius:12px;
+      margin:45px 0;
+      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .highlight-box p{
+      margin:0;
+      font-size:18px;
+      font-weight:500;
+      color:var(--brown-dark);
+    }
+
+    .story-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      margin:45px 0;
+    }
+
+    .story-card{
+      background:white;
+      border-radius:18px;
+      padding:28px;
+      border:1px solid rgba(92,70,50,0.08);
+      transition:0.3s ease;
+    }
+
+    .story-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 14px 35px rgba(0,0,0,0.08);
+    }
+
+    .story-card i{
+      font-size:28px;
+      color:var(--brown-main);
+      margin-bottom:18px;
+    }
+
+    .story-card h3{
+      margin-bottom:12px;
+      font-size:18px;
+    }
+
+    .story-card p{
+      margin:0;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    /* QUOTE */
+    .quote-section{
+      margin:60px 0;
+      padding:60px 8%;
+      background:var(--brown-dark);
+      border-radius:24px;
+      text-align:center;
+      color:white;
+    }
+
+    .quote-section i{
+      font-size:40px;
+      margin-bottom:20px;
+      color:var(--brown-light);
+    }
+
+    .quote-section h3{
+      font-size:clamp(1.6rem,4vw,2.5rem);
+      line-height:1.4;
+      margin-bottom:20px;
+    }
+
+    .quote-section p{
+      color:rgba(255,255,255,0.75);
+      margin:0;
+      font-size:14px;
+      letter-spacing:2px;
+    }
+
+    /* CTA */
+    .blog-cta{
+      margin-top:80px;
+      background:white;
+      border-radius:24px;
+      padding:60px 8%;
+      text-align:center;
+      border:1px solid rgba(92,70,50,0.08);
+    }
+
+    .blog-cta h2{
+      margin-bottom:16px;
+      font-size:clamp(2rem,5vw,3rem);
+    }
+
+    .blog-cta p{
+      max-width:650px;
+      margin:auto auto 30px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .cta-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 30px;
+      background:var(--brown-main);
+      color:white;
+      text-decoration:none;
+      border-radius:50px;
+      font-weight:700;
+      transition:0.25s ease;
+    }
+
+    .cta-btn:hover{
+      transform:translateY(-3px);
+      background:var(--brown-dark);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+
+      .blog-hero{
+        height:65vh;
+      }
+
+      .hero-content h1{
+        font-size:2.6rem;
+      }
+
+      .blog-container{
+        padding:55px 0;
+      }
+
+      .blog-container p{
+        font-size:15px;
+      }
+
+      .blog-container h2{
+        font-size:26px;
+      }
+
+      .story-grid{
+        grid-template-columns:1fr;
+      }
+
+      .quote-section{
+        padding:45px 6%;
+      }
+
+      .blog-cta{
+        padding:45px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="blog-hero">
+    <img src="img/Nomadic1.jpg" alt="TBC Story">
+
+    <div class="hero-content">
+      <div class="hero-tag">
+        MUSIC • FASHION • CULTURE
+      </div>
+
+      <h1>When Music Meets Fashion: The TBC Story</h1>
+
+      <p>
+        How sound, identity, culture and style became the foundation of Thëßrøthërs Collection.
+      </p>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <main class="blog-container">
+
+    <div class="article-meta">
+      <span><i class="fa-regular fa-clock"></i> 6 min read</span>
+      <span><i class="fa-regular fa-calendar"></i> May 2026</span>
+      <span><i class="fa-solid fa-music"></i> Culture & Lifestyle</span>
+    </div>
+
+    <p>
+      Fashion and music have always moved together. Long before luxury brands entered streetwear culture, artists, creatives, and underground communities were already using clothing and sound as forms of identity. Every generation has had a soundtrack, and every soundtrack came with a style attached to it.
+    </p>
+
+    <p>
+      Thëßrøthërs Collection was built around that exact connection. It was never designed to be just another clothing brand. The vision was bigger — a fusion of fashion, music, lifestyle, and culture that reflects the energy of modern youth and creative expression.
+    </p>
+
+    <div class="highlight-box">
+      <p>
+        “TBC is not just about what you wear. It’s about what you represent.”
+      </p>
+    </div>
+
+    <h2>Where the Vision Started</h2>
+
+    <p>
+      The rise of modern streetwear changed the relationship people had with fashion. Clothing became more personal. Outfits started carrying emotion, confidence, ambition, rebellion, and creativity. At the same time, music evolved into more than entertainment — it became a cultural force shaping how people dressed, moved, and expressed themselves online and offline.
+    </p>
+
+    <p>
+      TBC was born from observing that connection. The goal was to create a brand that could exist naturally between both worlds. A hoodie could feel inspired by music visuals. A photoshoot could carry the energy of an album cover. A collection could communicate the same emotions a song delivers.
+    </p>
+
+    <p>
+      Instead of separating fashion from entertainment, TBC combines them into one identity-driven experience.
+    </p>
+
+    <div class="story-grid">
+
+      <div class="story-card">
+        <i class="fa-solid fa-headphones"></i>
+        <h3>Music Energy</h3>
+        <p>
+          Every collection carries the emotion and atmosphere of modern music culture.
+        </p>
+      </div>
+
+      <div class="story-card">
+        <i class="fa-solid fa-shirt"></i>
+        <h3>Street Fashion</h3>
+        <p>
+          Oversized silhouettes, layering, textures, and confidence define the visual identity.
+        </p>
+      </div>
+
+      <div class="story-card">
+        <i class="fa-solid fa-earth-africa"></i>
+        <h3>Cultural Identity</h3>
+        <p>
+          TBC reflects a generation inspired by global culture while staying connected to its roots.
+        </p>
+      </div>
+
+    </div>
+
+    <h2>The Rise of Lifestyle Brands</h2>
+
+    <p>
+      Modern brands are no longer surviving by selling products alone. The strongest brands today sell experiences, emotions, and identity. People want to feel connected to a movement, not just a logo.
+    </p>
+
+    <p>
+      That is why lifestyle brands continue dominating youth culture. From music artists launching fashion labels to designers building creative communities online, the line between fashion and entertainment continues to disappear.
+    </p>
+
+    <p>
+      TBC embraces that shift completely. The brand exists across fashion, visuals, music-inspired storytelling, digital culture, and lifestyle content. Every piece is designed to feel like part of a larger world rather than a standalone product.
+    </p>
+
+    <div class="quote-section">
+      <i class="fa-solid fa-quote-left"></i>
+
+      <h3>
+        “The future belongs to brands that make people feel something.”
+      </h3>
+
+      <p>THËßRØTHËRS COLLECTION</p>
+    </div>
+
+    <h2>Fashion as Self-Expression</h2>
+
+    <p>
+      One reason music and fashion connect so naturally is because both are forms of expression. Music allows people to communicate emotions they cannot easily explain. Fashion does the same visually.
+    </p>
+
+    <p>
+      A person wearing oversized layered pieces with bold accessories communicates something different from someone wearing clean monochrome tailoring. Style choices reveal personality, mindset, and even ambition.
+    </p>
+
+    <p>
+      TBC focuses heavily on this idea. Every collection is built around movement, confidence, individuality, and identity. The goal is not simply to follow trends, but to create pieces that help people express themselves naturally.
+    </p>
+
+    <h2>The Influence of Digital Culture</h2>
+
+    <p>
+      Social media transformed fashion and music into one shared global conversation. Trends now move instantly between countries, communities, and creative industries. A song release can influence fashion aesthetics overnight. A viral outfit can inspire music visuals and content creation.
+    </p>
+
+    <p>
+      This digital era created a new generation of creatives who no longer separate disciplines. Designers create playlists. Artists launch fashion brands. Content creators become style icons. Everything is connected.
+    </p>
+
+    <p>
+      TBC represents that modern creative ecosystem. The brand speaks to individuals who are inspired by fashion, technology, music, design, and culture simultaneously.
+    </p>
+
+    <h2>The Future of TBC</h2>
+
+    <p>
+      The future vision for Thëßrøthërs Collection goes far beyond clothing. The goal is to continue building a creative universe that blends fashion, entertainment, digital storytelling, and cultural influence into one experience.
+    </p>
+
+    <p>
+      Future collections, visuals, music projects, campaigns, and collaborations will continue reflecting the same core idea: fashion and music are not separate worlds — they are part of the same language.
+    </p>
+
+    <p>
+      As culture evolves, brands that understand emotion, storytelling, and identity will shape the next generation. TBC is positioning itself to become part of that movement.
+    </p>
+
+    <!-- CTA -->
+    <section class="blog-cta">
+
+      <h2>Experience The TBC World</h2>
+
+      <p>
+        Explore the collections, visuals, and culture shaping the next generation of lifestyle fashion.
+      </p>
+
+      <a href="shop.html" class="cta-btn">
+        Explore The Collection
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

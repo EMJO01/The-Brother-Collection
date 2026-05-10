@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How Street Fashion Became the Language of a Generation</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brown-dark: #2f241b;
+      --brown-main: #5c4432;
+      --brown-light: #bfa58a;
+      --cream: #f7f1ea;
+      --white: #ffffff;
+      --muted: #7d746c;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--cream);
+      color:var(--brown-dark);
+      line-height:1.9;
+      overflow-x:hidden;
+    }
+
+    /* ===== HERO ===== */
+    .blog-hero{
+      position:relative;
+      height:70vh;
+      min-height:500px;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:60px 8%;
+      color:var(--white);
+    }
+
+    .blog-hero img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+    }
+
+    .blog-hero::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to top,
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.3)
+      );
+      z-index:1;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:800px;
+    }
+
+    .blog-tag{
+      display:inline-block;
+      padding:8px 16px;
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.2);
+      border-radius:30px;
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .hero-content h1{
+      font-size:clamp(2.5rem,7vw,5rem);
+      line-height:1.05;
+      margin-bottom:20px;
+      font-weight:800;
+    }
+
+    .hero-meta{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      color:rgba(255,255,255,0.75);
+      font-size:14px;
+      letter-spacing:1px;
+    }
+
+    /* ===== BLOG CONTAINER ===== */
+    .blog-container{
+      width:min(900px,92%);
+      margin:auto;
+      padding:80px 0;
+    }
+
+    .intro{
+      font-size:1.2rem;
+      color:var(--brown-main);
+      font-weight:500;
+      margin-bottom:40px;
+      line-height:1.8;
+    }
+
+    .blog-container h2{
+      font-size:2rem;
+      margin:60px 0 18px;
+      color:var(--brown-dark);
+      line-height:1.3;
+      position:relative;
+      padding-left:18px;
+    }
+
+    .blog-container h2::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:8px;
+      width:6px;
+      height:36px;
+      background:var(--brown-main);
+      border-radius:10px;
+    }
+
+    .blog-container p{
+      margin-bottom:24px;
+      color:#4f4741;
+      font-size:16px;
+    }
+
+    .blog-container ul{
+      margin:10px 0 30px 20px;
+    }
+
+    .blog-container li{
+      margin-bottom:12px;
+      color:#4f4741;
+    }
+
+    /* ===== QUOTE ===== */
+    .quote-box{
+      margin:50px 0;
+      padding:40px;
+      background:var(--white);
+      border-left:6px solid var(--brown-main);
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .quote-box p{
+      font-size:1.4rem;
+      font-weight:600;
+      color:var(--brown-dark);
+      line-height:1.6;
+      margin:0;
+    }
+
+    /* ===== END SECTION ===== */
+    .ending{
+      margin-top:70px;
+      padding:40px;
+      background:var(--brown-dark);
+      color:var(--cream);
+      border-radius:22px;
+      text-align:center;
+    }
+
+    .ending h3{
+      font-size:2rem;
+      margin-bottom:14px;
+    }
+
+    .ending p{
+      color:rgba(255,255,255,0.75);
+      margin-bottom:0;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:768px){
+
+      .blog-hero{
+        height:60vh;
+        padding:40px 6%;
+      }
+
+      .hero-content h1{
+        font-size:2.5rem;
+      }
+
+      .blog-container{
+        padding:50px 0;
+      }
+
+      .blog-container h2{
+        font-size:1.5rem;
+      }
+
+      .quote-box{
+        padding:25px;
+      }
+
+      .quote-box p{
+        font-size:1.1rem;
+      }
+
+      .ending{
+        padding:30px 20px;
+      }
+
+      .ending h3{
+        font-size:1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="blog-hero">
+    <img src="img/street-fashion.jpg" alt="Street Fashion">
+
+    <div class="hero-content">
+      <span class="blog-tag">Culture • Fashion • Identity</span>
+
+      <h1>How Street Fashion Became the Language of a Generation</h1>
+
+      <div class="hero-meta">
+        <span>6 Min Read</span>
+        <span>By The Brothers Collection</span>
+        <span>2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG CONTENT -->
+  <main class="blog-container">
+
+    <p class="intro">
+      Street fashion stopped being just clothing. 
+      It became identity, emotion, and self-expression. 
+      What people wear today says more about them than words ever could.
+    </p>
+
+    <p>
+      There was a time when fashion belonged almost entirely to luxury runways, glossy magazines, and celebrities behind velvet ropes. Style felt distant — controlled by designers, fashion houses, and people who seemed impossible to relate to.
+    </p>
+
+    <p>
+      But somewhere between music culture, skate parks, thrift stores, underground scenes, and the rise of social media, a different movement quietly took over.
+    </p>
+
+    <p>
+      The streets became the runway.
+    </p>
+
+    <div class="quote-box">
+      <p>
+        “Street fashion became more than a trend — it became the visual language of an entire generation.”
+      </p>
+    </div>
+
+    <h2>Fashion Left the Runway and Entered the Streets</h2>
+
+    <p>
+      Traditional fashion used to move in one direction: from luxury brands down to everyday people. Designers created trends, magazines approved them, and the public followed.
+    </p>
+
+    <p>
+      Streetwear changed that completely.
+    </p>
+
+    <p>
+      Young people started creating their own style codes inspired by music, sports, skate culture, city life, and personal creativity. Sneakers became symbols. Hoodies became statements. Vintage pieces became part of modern identity.
+    </p>
+
+    <p>
+      Fashion suddenly felt real, accessible, and personal.
+    </p>
+
+    <h2>Music and Fashion Became One Culture</h2>
+
+    <p>
+      Music played one of the biggest roles in turning street fashion into a global movement. Artists no longer dressed like distant celebrities — they dressed like the people listening to them.
+    </p>
+
+    <p>
+      Hip-hop popularized sneakers and oversized silhouettes. Drill and trap culture introduced tactical aesthetics, cargos, puffers, and monochrome styling. Afrobeats merged luxury with African creativity and relaxed streetwear.
+    </p>
+
+    <p>
+      Fans didn’t just listen to artists anymore. They studied the outfits, copied the energy, and connected emotionally to the image being created.
+    </p>
+
+    <h2>Social Media Changed Everything</h2>
+
+    <p>
+      Before social media, trends moved slowly. Today, one TikTok, Instagram reel, or street-style post can influence millions overnight.
+    </p>
+
+    <p>
+      The internet gave ordinary people the power to shape culture. You no longer needed to be a celebrity to influence fashion.
+    </p>
+
+    <p>
+      A teenager styling thrifted pieces creatively could inspire people across the world within hours.
+    </p>
+
+    <p>
+      This changed fashion permanently.
+    </p>
+
+    <h2>Streetwear Became a Symbol of Identity</h2>
+
+    <p>
+      One reason street fashion connects deeply with younger generations is because it gives freedom of expression.
+    </p>
+
+    <ul>
+      <li>Music taste</li>
+      <li>Personality</li>
+      <li>Mindset</li>
+      <li>Creativity</li>
+      <li>Background</li>
+      <li>Confidence</li>
+    </ul>
+
+    <p>
+      What people wear today often reflects who they are internally. Fashion became emotional communication.
+    </p>
+
+    <p>
+      Some dress minimally to represent calmness and discipline. Others wear bold graphics and layered accessories to express confidence and energy.
+    </p>
+
+    <h2>The Rise of Lifestyle Brands</h2>
+
+    <p>
+      Modern brands are no longer just selling clothing. They sell culture, identity, emotion, and belonging.
+    </p>
+
+    <p>
+      That is why successful fashion brands now combine:
+    </p>
+
+    <ul>
+      <li>Fashion</li>
+      <li>Music</li>
+      <li>Photography</li>
+      <li>Lifestyle content</li>
+      <li>Creative storytelling</li>
+      <li>Community</li>
+    </ul>
+
+    <p>
+      Consumers no longer buy products alone. They buy into movements and ideas.
+    </p>
+
+    <h2>More Than a Trend</h2>
+
+    <p>
+      Street fashion is no longer just hype drops or sneaker releases. It has become part of modern culture itself.
+    </p>
+
+    <p>
+      What started in underground scenes and city streets has evolved into a global language spoken through silhouettes, sneakers, accessories, colors, and attitude.
+    </p>
+
+    <p>
+      Every generation finds its own way to express itself.
+    </p>
+
+    <p>
+      For this generation, that language is street fashion.
+    </p>
+
+    <!-- ENDING -->
+    <div class="ending">
+      <h3>More Than Fashion.</h3>
+      <p>
+        A lifestyle built on culture, movement, creativity, and identity.
+      </p>
+    </div>
+
+  </main>
+
+</body>
+</html>

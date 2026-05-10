@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dress for Yourself: Self-Expression Through Fashion | Thëßrøthërs Collection</title>
+
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <style>
+    body{
+      background: var(--cream);
+      color: var(--brown-dark);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.8;
+    }
+
+    .blog-hero{
+      height: 72vh;
+      background:
+        linear-gradient(rgba(18,18,18,0.55), rgba(18,18,18,0.7)),
+        url('img/self-expression-fashion.jpg') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 6%;
+    }
+
+    .blog-hero-content{
+      max-width: 900px;
+      color: #fff;
+    }
+
+    .blog-tag{
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .blog-hero h1{
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .blog-meta{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.82);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .blog-container{
+      width: min(900px, 92%);
+      margin: auto;
+      padding: 80px 0;
+    }
+
+    .intro-text{
+      font-size: 1.12rem;
+      color: var(--muted);
+      margin-bottom: 50px;
+    }
+
+    .blog-section{
+      margin-bottom: 60px;
+    }
+
+    .blog-section h2{
+      font-size: 2rem;
+      margin-bottom: 18px;
+      color: var(--brown-dark);
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .blog-section h2::before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 6px;
+      height: 85%;
+      background: var(--brown-main);
+      border-radius: 4px;
+    }
+
+    .blog-section p{
+      margin-bottom: 20px;
+      color: #4b4035;
+      font-size: 1rem;
+    }
+
+    .image-banner{
+      margin: 50px 0;
+      border-radius: 24px;
+      overflow: hidden;
+      height: 420px;
+    }
+
+    .image-banner img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .quote-box{
+      margin: 55px 0;
+      background: #fff;
+      padding: 35px;
+      border-left: 5px solid var(--brown-main);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .quote-box p{
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--brown-dark);
+      line-height: 1.7;
+    }
+
+    .style-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin: 50px 0;
+    }
+
+    .style-card{
+      background: #fff;
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(58,46,30,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      transition: 0.3s ease;
+    }
+
+    .style-card:hover{
+      transform: translateY(-6px);
+    }
+
+    .style-card h3{
+      margin-bottom: 12px;
+      color: var(--brown-dark);
+      font-size: 1.3rem;
+    }
+
+    .style-card p{
+      color: #5a4e43;
+      margin: 0;
+      font-size: 0.96rem;
+    }
+
+    .closing-box{
+      margin-top: 80px;
+      padding: 45px;
+      border-radius: 24px;
+      background: var(--brown-dark);
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .closing-box h3{
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .closing-box p{
+      max-width: 700px;
+      margin: auto;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .back-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 14px 24px;
+      background: var(--brown-main);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .back-btn:hover{
+      transform: translateY(-3px);
+      background: #5f4831;
+    }
+
+    @media(max-width:768px){
+
+      .blog-hero{
+        height: 60vh;
+      }
+
+      .blog-container{
+        padding: 60px 0;
+      }
+
+      .blog-section h2{
+        font-size: 1.6rem;
+      }
+
+      .image-banner{
+        height: 260px;
+      }
+
+      .quote-box{
+        padding: 24px;
+      }
+
+      .quote-box p{
+        font-size: 1.1rem;
+      }
+
+      .style-card{
+        padding: 22px;
+      }
+
+      .closing-box{
+        padding: 32px 22px;
+      }
+
+      .closing-box h3{
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+
+      <span class="blog-tag">Fashion • Identity • Lifestyle</span>
+
+      <h1>Dress for Yourself: Self-Expression Through Fashion</h1>
+
+      <div class="blog-meta">
+        <span>By TBC Editorial</span>
+        <span>6 Min Read</span>
+        <span>2026</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <main class="blog-container">
+
+    <p class="intro-text">
+      Fashion has never been just about clothing. It is emotion, confidence, identity, creativity, and personality stitched into fabric. What people wear tells stories before they even speak. In a world full of trends, algorithms, and opinions, learning to dress for yourself has become one of the boldest forms of self-expression.
+    </p>
+
+    <div class="blog-section">
+      <h2>More Than Just Looking Good</h2>
+
+      <p>
+        For many people, fashion starts with appearance. But over time, style becomes something deeper. Clothes begin to reflect mood, mindset, ambition, culture, and individuality.
+      </p>
+
+      <p>
+        Some people dress in oversized silhouettes because they feel comfortable and confident. Others love monochrome fits because simplicity reflects their personality. Some mix vintage and modern pieces to create something completely unique.
+      </p>
+
+      <p>
+        The most powerful outfits are not always the most expensive or trendy. They are the ones that feel authentic to the person wearing them.
+      </p>
+    </div>
+
+    <div class="image-banner">
+      <img src="img/fashion-expression-1.jpg" alt="Self Expression Fashion">
+    </div>
+
+    <div class="blog-section">
+      <h2>The Pressure to Follow Trends</h2>
+
+      <p>
+        Social media has made fashion faster than ever. Every week, new aesthetics, new “must-have” pieces, and new trends dominate timelines. While trends can inspire creativity, they can also create pressure to fit into a certain image.
+      </p>
+
+      <p>
+        Many people end up dressing for validation instead of self-expression. They wear what gets likes instead of what genuinely reflects who they are.
+      </p>
+
+      <p>
+        But style becomes more meaningful when it is personal. Fashion should not feel like a costume created for strangers online. It should feel like an extension of identity.
+      </p>
+    </div>
+
+    <div class="quote-box">
+      <p>
+        “The best style is not the loudest trend — it is the version of yourself you feel most confident in.”
+      </p>
+    </div>
+
+    <div class="blog-section">
+      <h2>Finding Your Personal Style</h2>
+
+      <p>
+        Personal style is not built overnight. It evolves through experimentation, inspiration, and confidence. The process is different for everyone.
+      </p>
+
+      <p>
+        Some people discover their style through music culture, others through art, streetwear, luxury fashion, skate culture, or even old family photographs. Inspiration can come from anywhere.
+      </p>
+
+      <p>
+        The important thing is understanding that style does not need to fit inside one category. Fashion is fluid. You can combine multiple influences and still create something original.
+      </p>
+    </div>
+
+    <div class="style-grid">
+
+      <div class="style-card">
+        <h3>Minimal Style</h3>
+        <p>
+          Clean silhouettes, neutral colors, and timeless pieces focused on simplicity and elegance.
+        </p>
+      </div>
+
+      <div class="style-card">
+        <h3>Streetwear Energy</h3>
+        <p>
+          Oversized fits, sneakers, cargos, hoodies, and layered pieces inspired by youth culture and music.
+        </p>
+      </div>
+
+      <div class="style-card">
+        <h3>Creative Expression</h3>
+        <p>
+          Bold colors, vintage mixes, accessories, and experimental styling that reflects individuality.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="image-banner">
+      <img src="img/fashion-expression-2.jpg" alt="Streetwear and Identity">
+    </div>
+
+    <div class="blog-section">
+      <h2>Fashion and Confidence</h2>
+
+      <p>
+        The relationship between style and confidence is powerful. When people feel comfortable in what they wear, it changes how they move, communicate, and present themselves.
+      </p>
+
+      <p>
+        Fashion can become armor. It can help people express emotions they cannot explain with words. A fit can communicate creativity, calmness, ambition, mystery, rebellion, or freedom.
+      </p>
+
+      <p>
+        That is why style matters beyond aesthetics. It affects identity and self-perception in subtle but important ways.
+      </p>
+    </div>
+
+    <div class="blog-section">
+      <h2>The Rise of Authentic Fashion</h2>
+
+      <p>
+        Modern fashion culture is slowly shifting away from perfection. More people are embracing authenticity over unrealistic standards. Individuality now stands out more than copying every trend.
+      </p>
+
+      <p>
+        Across Lagos and global streetwear culture, young creatives are building looks based on emotion, storytelling, and identity rather than strict fashion rules.
+      </p>
+
+      <p>
+        The future of style belongs to people who are comfortable expressing themselves honestly.
+      </p>
+    </div>
+
+    <div class="closing-box">
+
+      <h3>Wear What Feels Like You</h3>
+
+      <p>
+        Fashion is at its best when it reflects personality instead of pressure. Trends will always change, but authentic self-expression never goes out of style. Dress for yourself first — everything else comes after.
+      </p>
+
+      <a href="lifestyle.html" class="back-btn">
+        ← Back to Blog
+      </a>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
