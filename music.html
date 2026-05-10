@@ -379,6 +379,132 @@
       color: var(--music-accent);
     }
 
+    /* ===== TRACKLIST ===== */
+.track-item {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.track-item.open {
+  border-color: var(--music-accent);
+  background: rgba(169,116,88,0.05);
+}
+
+.track-row {
+  display: grid;
+  grid-template-columns: 36px 52px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 10px;
+}
+
+.track-row:hover {
+  background: rgba(169,116,88,0.08);
+}
+
+.track-item.open .track-row {
+  background: rgba(169,116,88,0.1);
+  border-radius: 10px 10px 0 0;
+}
+
+.track-num {
+  font-size: 13px;
+  color: var(--music-muted);
+  text-align: center;
+  font-weight: 600;
+}
+
+.track-play-icon {
+  display: none;
+  color: var(--music-accent);
+  font-size: 14px;
+  text-align: center;
+}
+
+.track-item.open .track-num { display: none; }
+.track-item.open .track-play-icon { display: block; }
+
+.track-thumb {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.track-details h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.track-details p {
+  font-size: 12px;
+  color: var(--music-muted);
+}
+
+.track-duration {
+  font-size: 13px;
+  color: var(--music-muted);
+  white-space: nowrap;
+}
+
+.track-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--music-muted);
+  padding: 6px 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.track-item.open .track-play-btn {
+  border-color: var(--music-accent);
+  color: var(--music-accent);
+}
+
+.track-row:hover .track-play-btn {
+  border-color: var(--music-accent);
+  color: var(--music-accent);
+}
+
+/* ===== EMBED PANEL ===== */
+.track-embed {
+  display: none;
+  padding: 0 18px 16px;
+  background: rgba(169,116,88,0.05);
+}
+
+.track-item.open .track-embed {
+  display: block;
+}
+
+.track-embed iframe {
+  border-radius: 10px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .track-row {
+    grid-template-columns: 30px 40px 1fr auto;
+    gap: 10px;
+    padding: 12px 10px;
+  }
+
+  .track-play-btn { display: none; }
+  .track-duration { display: none; }
+}
+
     /* ===== STREAMING PLATFORMS ===== */
     .platforms-section {
       padding: 80px 8%;
@@ -613,7 +739,7 @@
         <div class="featured-cover">
           <img src="img/Nomadic1.jpg" alt="Latest Drop">
           <div class="play-overlay">
-            <i class="fas fa-play"></i>
+            <iframe src="https://audiomack.com//embed/double_cees/song/omo-naathe-child" scrolling="no" width="100%" height="252" frameborder="0" title="Omo ná"></iframe>
           </div>
           <div class="vinyl-spin"></div>
         </div>
@@ -656,116 +782,140 @@
       <div class="section-label">Tracklist</div>
       <div class="tracklist">
 
-        <div class="track-row">
-          <span class="track-num">1</span>
-          <i class="fas fa-play track-play-icon"></i>
-          <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 1">
-          <div class="track-details">
-            <h4>Nomadic Intro</h4>
-            <p>Thëßrøthërs</p>
+        <div class="track-item">
+          <div class="track-row" onclick="toggleTrack(this)">
+            <span class="track-num">1</span>
+            <i class="fas fa-play track-play-icon"></i>
+            <img class="track-thumb" src="img/omo na.webp" alt="Track 1">
+            <div class="track-details">
+              <h4>Omo ná</h4>
+              <p>Thëßrøthërs</p>
+            </div>
+            <span class="track-duration">1:42</span>
+            <span class="track-play-btn"><i class="fas fa-play"></i> Play</span>
           </div>
-          <span class="track-duration">1:42</span>
-          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
-            <i class="fab fa-spotify"></i> Stream
-          </a>
+          <div class="track-embed">
+            <iframe src="https://audiomack.com/embed/double_cees/song/omo-naathe-child" scrolling="no" width="100%" height="252" frameborder="0" title="Nomadic Intro" allow="autoplay"></iframe>
+          </div>
         </div>
 
-        <div class="track-row">
-          <span class="track-num">2</span>
-          <i class="fas fa-play track-play-icon"></i>
-          <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 2">
-          <div class="track-details">
-            <h4>Move Different</h4>
-            <p>Thëßrøthërs</p>
+        <div class="track-item">
+          <div class="track-row" onclick="toggleTrack(this)">
+            <span class="track-num">2</span>
+            <i class="fas fa-play track-play-icon"></i>
+            <img class="track-thumb" src="img/The brothers.webp" alt="Track 2">
+            <div class="track-details">
+              <h4>The brothers</h4>
+              <p>Thëßrøthërs</p>
+            </div>
+            <span class="track-duration">3:18</span>
+            <span class="track-play-btn"><i class="fas fa-play"></i> Play</span>
           </div>
-          <span class="track-duration">3:18</span>
-          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
-            <i class="fab fa-spotify"></i> Stream
-          </a>
+          <div class="track-embed">
+            <iframe src="https://audiomack.com//embed/double_cees/song/the-brothers" scrolling="no" width="100%" height="252" frameborder="0" title="The brothers"></iframe>
+          </div>
         </div>
 
-        <div class="track-row">
-          <span class="track-num">3</span>
-          <i class="fas fa-play track-play-icon"></i>
-          <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 3">
-          <div class="track-details">
-            <h4>Street Culture</h4>
-            <p>Thëßrøthërs</p>
+        <div class="track-item">
+          <div class="track-row" onclick="toggleTrack(this)">
+            <span class="track-num">3</span>
+            <i class="fas fa-play track-play-icon"></i>
+            <img class="track-thumb" src="img/Shadow.webp" alt="Track 3">
+            <div class="track-details">
+              <h4>Shadow</h4>
+              <p>Thëßrøthërs</p>
+            </div>
+            <span class="track-duration">3:45</span>
+            <span class="track-play-btn"><i class="fas fa-play"></i> Play</span>
           </div>
-          <span class="track-duration">3:45</span>
-          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
-            <i class="fab fa-spotify"></i> Stream
-          </a>
+          <div class="track-embed">
+            <iframe src="https://audiomack.com//embed/double_cees/song/shadow" scrolling="no" width="100%" height="252" frameborder="0" title="Shadow"></iframe>
+          </div>
         </div>
 
-        <div class="track-row">
-          <span class="track-num">4</span>
-          <i class="fas fa-play track-play-icon"></i>
-          <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 4">
-          <div class="track-details">
-            <h4>Desert Road</h4>
-            <p>Thëßrøthërs</p>
+        <div class="track-item">
+          <div class="track-row" onclick="toggleTrack(this)">
+            <span class="track-num">4</span>
+            <i class="fas fa-play track-play-icon"></i>
+            <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 4">
+            <div class="track-details">
+              <h4>Desert Road</h4>
+              <p>Thëßrøthërs</p>
+            </div>
+            <span class="track-duration">4:02</span>
+            <span class="track-play-btn"><i class="fas fa-play"></i> Play</span>
           </div>
-          <span class="track-duration">4:02</span>
-          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
-            <i class="fab fa-spotify"></i> Stream
-          </a>
+          <div class="track-embed">
+            <iframe src="https://audiomack.com/embed/double_cees/song/omo-naathe-child" scrolling="no" width="100%" height="252" frameborder="0" title="Desert Road" allow="autoplay"></iframe>
+          </div>
         </div>
 
-        <div class="track-row">
-          <span class="track-num">5</span>
-          <i class="fas fa-play track-play-icon"></i>
-          <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 5">
-          <div class="track-details">
-            <h4>Identity</h4>
-            <p>Thëßrøthërs</p>
+        <div class="track-item">
+          <div class="track-row" onclick="toggleTrack(this)">
+            <span class="track-num">5</span>
+            <i class="fas fa-play track-play-icon"></i>
+            <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 5">
+            <div class="track-details">
+              <h4>Identity</h4>
+              <p>Thëßrøthërs</p>
+            </div>
+            <span class="track-duration">3:55</span>
+            <span class="track-play-btn"><i class="fas fa-play"></i> Play</span>
           </div>
-          <span class="track-duration">3:55</span>
-          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
-            <i class="fab fa-spotify"></i> Stream
-          </a>
+          <div class="track-embed">
+            <iframe src="https://audiomack.com/embed/double_cees/song/omo-naathe-child" scrolling="no" width="100%" height="252" frameborder="0" title="Identity" allow="autoplay"></iframe>
+          </div>
         </div>
 
-        <div class="track-row">
-          <span class="track-num">6</span>
-          <i class="fas fa-play track-play-icon"></i>
-          <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 6">
-          <div class="track-details">
-            <h4>Lagos Nights</h4>
-            <p>Thëßrøthërs</p>
+        <div class="track-item">
+          <div class="track-row" onclick="toggleTrack(this)">
+            <span class="track-num">6</span>
+            <i class="fas fa-play track-play-icon"></i>
+            <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 6">
+            <div class="track-details">
+              <h4>Lagos Nights</h4>
+              <p>Thëßrøthërs</p>
+            </div>
+            <span class="track-duration">4:11</span>
+            <span class="track-play-btn"><i class="fas fa-play"></i> Play</span>
           </div>
-          <span class="track-duration">4:11</span>
-          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
-            <i class="fab fa-spotify"></i> Stream
-          </a>
+          <div class="track-embed">
+            <iframe src="https://audiomack.com/embed/double_cees/song/omo-naathe-child" scrolling="no" width="100%" height="252" frameborder="0" title="Lagos Nights" allow="autoplay"></iframe>
+          </div>
         </div>
 
-        <div class="track-row">
-          <span class="track-num">7</span>
-          <i class="fas fa-play track-play-icon"></i>
-          <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 7">
-          <div class="track-details">
-            <h4>Free Spirit</h4>
-            <p>Thëßrøthërs</p>
+        <div class="track-item">
+          <div class="track-row" onclick="toggleTrack(this)">
+            <span class="track-num">7</span>
+            <i class="fas fa-play track-play-icon"></i>
+            <img class="track-thumb" src="img/Nomadic1.jpg" alt="Track 7">
+            <div class="track-details">
+              <h4>Free Spirit</h4>
+              <p>Thëßrøthërs</p>
+            </div>
+            <span class="track-duration">3:29</span>
+            <span class="track-play-btn"><i class="fas fa-play"></i> Play</span>
           </div>
-          <span class="track-duration">3:29</span>
-          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
-            <i class="fab fa-spotify"></i> Stream
-          </a>
+          <div class="track-embed">
+            <iframe src="https://audiomack.com/embed/double_cees/song/omo-naathe-child" scrolling="no" width="100%" height="252" frameborder="0" title="Free Spirit" allow="autoplay"></iframe>
+          </div>
         </div>
 
-        <div class="track-row">
-          <span class="track-num">8</span>
-          <i class="fas fa-play track-play-icon"></i>
-          <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 8">
-          <div class="track-details">
-            <h4>Outro (Movement)</h4>
-            <p>Thëßrøthërs</p>
+        <div class="track-item">
+          <div class="track-row" onclick="toggleTrack(this)">
+            <span class="track-num">8</span>
+            <i class="fas fa-play track-play-icon"></i>
+            <img class="track-thumb" src="img/Nomadic.jpg" alt="Track 8">
+            <div class="track-details">
+              <h4>Outro (Movement)</h4>
+              <p>Thëßrøthërs</p>
+            </div>
+            <span class="track-duration">2:58</span>
+            <span class="track-play-btn"><i class="fas fa-play"></i> Play</span>
           </div>
-          <span class="track-duration">2:58</span>
-          <a href="https://www.spotify.com" target="_blank" class="track-stream-link">
-            <i class="fab fa-spotify"></i> Stream
-          </a>
+          <div class="track-embed">
+            <iframe src="https://audiomack.com/embed/double_cees/song/omo-naathe-child" scrolling="no" width="100%" height="252" frameborder="0" title="Outro Movement" allow="autoplay"></iframe>
+          </div>
         </div>
 
       </div>
@@ -779,7 +929,7 @@
         <a href="https://www.spotify.com" target="_blank" class="platform-card spotify">
           <i class="fab fa-spotify"></i> Spotify
         </a>
-        <a href="https://audiomack.com" target="_blank" class="platform-card audiomack">
+        <a href="https://audiomack.com/double_cees" target="_blank" class="platform-card audiomack">
           <i class="fas fa-music"></i> Audiomack
         </a>
         <a href="https://music.apple.com" target="_blank" class="platform-card apple">
@@ -847,46 +997,69 @@
   </main>
 
   <!-- FOOTER -->
-  <footer id="contact" class="footer" style="background:#0a0a0a">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <h2>Thëßrøthërs</h2>
-        <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+  <footer id="contact" class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2>Thëßrøthërs</h2>
+      <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <a href="shop.html">Wears</a>
+        <a href="shop.html">Shoes</a>
+        <a href="shop.html">Accessories</a>
       </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h3>Shop</h3>
-          <a href="shop.html">Wears</a>
-          <a href="shop.html">Shoes</a>
-          <a href="shop.html">Accessories</a>
-        </div>
-        <div class="footer-col">
-          <h3>Entertainment</h3>
-          <a href="music.html">Music</a>
-          <a href="lifestyle.html">Lifestyle</a>
-        </div>
-        <div class="footer-col">
-          <h3>Support</h3>
-          <a href="index.html#contact">Contact</a>
-          <a href="#">FAQ</a>
-          <a href="#">Policy</a>
-        </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <a href="music.html">Music</a>
+        <a href="lifestyle.html">Lifestyle</a>
+        <a href="index.html#partners">Partners</a>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <a href="contact.html">Contact Us</a>
+        <a href="faq.html">FAQ</a>
+        <a href="policy.html">Privacy Policy</a>
       </div>
     </div>
-    <div class="footer-social">
-      <p>Follow Us</p>
-      <div class="social-icons">
-        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
-        <a href="https://www.x.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-      </div>
+  </div>
+
+  <div class="footer-social">
+    <p>Follow Us</p>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61589076495092&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tiktok.com/@thebrotherscollections?_r=1&_t=ZS-96AM1hBIxwQ" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/thebrothercollection.co/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://audiomack.com/double_cees" target="_blank" title="Audiomack"><i class="fas fa-music"></i></a>
+        <a href="https://www.spotify.com" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://x.com/Captain_5050" target="_blank" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
     </div>
-    <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
-    <p class="footer-tagline">Welcome To The Future 🚀</p>
-  </footer>
+  </div>
+
+  <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
+  <p class="footer-tagline">Welcome To The Future 🚀</p>
+</footer>
 
 </body>
+<script>
+  function toggleTrack(row) {
+    const item = row.parentElement;
+    const isOpen = item.classList.contains('open');
+
+    // Close all open tracks
+    document.querySelectorAll('.track-item').forEach(i => i.classList.remove('open'));
+
+    // If it wasn't open, open it
+    if (!isOpen) {
+      item.classList.add('open');
+      // Scroll into view smoothly
+      setTimeout(() => {
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }
+</script>
 <script src="main.js"></script>
 </html>

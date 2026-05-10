@@ -178,6 +178,37 @@
       margin-bottom: 10px;
     }
 
+    /* ===== NEWS LOADING ===== */
+.news-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--ls-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.news-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(169,116,88,0.2);
+  border-top-color: var(--ls-brown);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.news-error {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: var(--ls-muted);
+  font-size: 14px;
+}
+
     .see-all {
       font-size: 13px;
       font-weight: 600;
@@ -598,25 +629,29 @@
           <p class="ls-tag-line">Editor's Pick</p>
           <h2>Featured Story</h2>
         </div>
-        <a href="#" class="see-all">View all stories <i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="see-all" id="see-all-link">View all stories <i class="fas fa-arrow-right"></i></a>
       </div>
 
-      <div class="featured-article">
-        <div class="featured-article-img">
-          <img src="img/tbc.jpg" alt="Featured Article">
+      <div id="featured-article-content">
+        <div class="news-loading">
+          <div class="news-spinner"></div>
+          <p>Loading latest stories...</p>
         </div>
-        <div class="featured-article-text">
-          <span class="article-cat">Culture</span>
-          <h2>How Street Fashion Became the Language of a Generation</h2>
-          <div class="article-meta">
-            <span><i class="fas fa-calendar"></i> Jan 2025</span>
-            <span><i class="fas fa-clock"></i> 6 min read</span>
-            <span><i class="fas fa-eye"></i> 14.2K views</span>
-          </div>
-          <p>From the streets of Lagos to global runways, the Nomadic generation is redefining what fashion means — not as status, but as identity, freedom, and movement.</p>
-          <a href="#" class="read-btn">
-            Read Story <i class="fas fa-arrow-right"></i>
-          </a>
+      </div>
+    </section>
+
+    <!-- ARTICLES GRID -->
+    <section class="ls-section alt">
+      <div class="ls-section-header">
+        <div>
+          <p class="ls-tag-line">Latest</p>
+          <h2>Stories &amp; Culture</h2>
+        </div>
+      </div>
+      <div class="articles-grid" id="news-grid">
+        <div class="news-loading">
+          <div class="news-spinner"></div>
+          <p>Loading news...</p>
         </div>
       </div>
     </section>
@@ -817,45 +852,209 @@
 
   <!-- FOOTER -->
   <footer id="contact" class="footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <h2>Thëßrøthërs</h2>
-        <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2>Thëßrøthërs</h2>
+      <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <a href="shop.html">Wears</a>
+        <a href="shop.html">Shoes</a>
+        <a href="shop.html">Accessories</a>
       </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h3>Shop</h3>
-          <a href="shop.html">Wears</a>
-          <a href="shop.html">Shoes</a>
-          <a href="shop.html">Accessories</a>
-        </div>
-        <div class="footer-col">
-          <h3>Entertainment</h3>
-          <a href="music.html">Music</a>
-          <a href="lifestyle.html">Lifestyle</a>
-        </div>
-        <div class="footer-col">
-          <h3>Support</h3>
-          <a href="index.html#contact">Contact</a>
-          <a href="#">FAQ</a>
-          <a href="#">Policy</a>
-        </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <a href="music.html">Music</a>
+        <a href="lifestyle.html">Lifestyle</a>
+        <a href="index.html#partners">Partners</a>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <a href="contact.html">Contact Us</a>
+        <a href="faq.html">FAQ</a>
+        <a href="policy.html">Privacy Policy</a>
       </div>
     </div>
-    <div class="footer-social">
-      <p>Follow Us</p>
-      <div class="social-icons">
-        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.spotify.com" target="_blank"><i class="fab fa-spotify"></i></a>
-        <a href="https://www.x.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-      </div>
+  </div>
+
+  <div class="footer-social">
+    <p>Follow Us</p>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61589076495092&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tiktok.com/@thebrotherscollections?_r=1&_t=ZS-96AM1hBIxwQ" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/thebrothercollection.co/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://audiomack.com/double_cees" target="_blank" title="Audiomack"><i class="fas fa-music"></i></a>
+        <a href="https://www.spotify.com" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://x.com/Captain_5050" target="_blank" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
     </div>
-    <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
-    <p class="footer-tagline">Welcome To The Future 🚀</p>
-  </footer>
+  </div>
+
+  <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
+  <p class="footer-tagline">Welcome To The Future 🚀</p>
+</footer>
 
 </body>
+
+<script>
+// ===== REAL-TIME NEWS via RSS2JSON =====
+// Uses free rss2json.com API to pull fashion/culture news
+
+const RSS_FEEDS = [
+  'https://www.vogue.com/feed/rss',
+  'https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml'
+];
+
+const API_BASE = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+async function fetchNews() {
+  try {
+    // Try first feed, fallback to second
+    let items = [];
+
+    for (const feed of RSS_FEEDS) {
+      try {
+        const res = await fetch(`${API_BASE}${encodeURIComponent(feed)}&count=7`);
+        const data = await res.json();
+        if (data.status === 'ok' && data.items.length > 0) {
+          items = data.items;
+          break;
+        }
+      } catch (e) {
+        continue;
+      }
+    }
+
+    if (items.length === 0) throw new Error('No items');
+
+    renderFeatured(items[0]);
+    renderGrid(items.slice(1, 7));
+
+  } catch (err) {
+    document.getElementById('featured-article-content').innerHTML = getFallbackFeatured();
+    document.getElementById('news-grid').innerHTML = getFallbackGrid();
+  }
+}
+
+function cleanDescription(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  return div.textContent.substring(0, 160) + '...';
+}
+
+function formatDate(dateStr) {
+  try {
+    return new Date(dateStr).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
+  } catch { return ''; }
+}
+
+function getImage(item) {
+  if (item.thumbnail && item.thumbnail.startsWith('http')) return item.thumbnail;
+  if (item.enclosure && item.enclosure.link) return item.enclosure.link;
+  // fallback to local images
+  const fallbacks = ['img/tbc.jpg', 'img/Nomadic.jpg', 'img/Nomadic1.jpg'];
+  return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+}
+
+function getCat(item) {
+  if (item.categories && item.categories.length > 0) return item.categories[0];
+  return 'Culture';
+}
+
+function renderFeatured(item) {
+  const el = document.getElementById('featured-article-content');
+  el.innerHTML = `
+    <div class="featured-article">
+      <div class="featured-article-img">
+        <img src="${getImage(item)}" alt="${item.title}" onerror="this.src='img/tbc.jpg'">
+      </div>
+      <div class="featured-article-text">
+        <span class="article-cat">${getCat(item)}</span>
+        <h2>${item.title}</h2>
+        <div class="article-meta">
+          <span><i class="fas fa-calendar"></i> ${formatDate(item.pubDate)}</span>
+          <span><i class="fas fa-clock"></i> 5 min read</span>
+        </div>
+        <p>${cleanDescription(item.description)}</p>
+        <a href="${item.link}" target="_blank" class="read-btn">
+          Read Story <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+function renderGrid(items) {
+  const grid = document.getElementById('news-grid');
+  const catColors = ['Style','Music','Culture','Sneakers','Identity','Events'];
+
+  grid.innerHTML = items.map((item, i) => `
+    <div class="article-card" onclick="window.open('${item.link}','_blank')">
+      <div class="article-card-img">
+        <img src="${getImage(item)}" alt="${item.title}" onerror="this.src='img/Nomadic.jpg'">
+      </div>
+      <div class="article-card-body">
+        <span class="article-cat">${getCat(item) || catColors[i % catColors.length]}</span>
+        <h3>${item.title}</h3>
+        <p>${cleanDescription(item.description)}</p>
+        <div class="article-card-footer">
+          <span><i class="fas fa-clock" style="margin-right:4px"></i> ${formatDate(item.pubDate)}</span>
+          <a href="${item.link}" target="_blank">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Fallbacks if API fails
+function getFallbackFeatured() {
+  return `
+    <div class="featured-article">
+      <div class="featured-article-img">
+        <img src="img/tbc.jpg" alt="Featured">
+      </div>
+      <div class="featured-article-text">
+        <span class="article-cat">Culture</span>
+        <h2>How Street Fashion Became the Language of a Generation</h2>
+        <div class="article-meta">
+          <span><i class="fas fa-calendar"></i> 2025</span>
+          <span><i class="fas fa-clock"></i> 6 min read</span>
+        </div>
+        <p>From the streets of Lagos to global runways, the Nomadic generation is redefining what fashion means — not as status, but as identity, freedom, and movement.</p>
+        <a href="#" class="read-btn">Read Story <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>`;
+}
+
+function getFallbackGrid() {
+  const articles = [
+    { img: 'img/Nomadic.jpg', cat: 'Style', title: 'The Nomadic Style Guide: How to Layer Like a Pro', desc: 'Master the art of layering with pieces from the Nomadic Collection for any occasion.' },
+    { img: 'img/Nomadic1.jpg', cat: 'Music', title: 'When Music Meets Fashion: The TBC Story', desc: 'How the brothers built a brand at the intersection of sound and style.' },
+    { img: 'img/tbc.jpg', cat: 'Culture', title: 'Lagos Street Scene: The Brands Shaping a City', desc: 'A look at the underground brands and artists building Lagos\'s next identity.' },
+    { img: 'img/Nomadic.jpg', cat: 'Sneakers', title: 'Sneaker Culture in Nigeria: Then vs Now', desc: 'How sneakers became a cultural statement in Nigeria.' },
+    { img: 'img/Nomadic1.jpg', cat: 'Identity', title: 'Dress for Yourself: Self-Expression Through Fashion', desc: 'The most powerful style choice is dressing for who you are.' },
+    { img: 'img/tbc.jpg', cat: 'Events', title: 'Festival Season Fits: What We\'re Wearing in 2025', desc: 'Our picks for the boldest fits for every event this season.' },
+  ];
+
+  return articles.map(a => `
+    <div class="article-card">
+      <div class="article-card-img"><img src="${a.img}" alt="${a.title}"></div>
+      <div class="article-card-body">
+        <span class="article-cat">${a.cat}</span>
+        <h3>${a.title}</h3>
+        <p>${a.desc}</p>
+        <div class="article-card-footer">
+          <span><i class="fas fa-clock" style="margin-right:4px"></i> 2025</span>
+          <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// Init
+fetchNews();
+</script>
 <script src="main.js"></script>
 </html>

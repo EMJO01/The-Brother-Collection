@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | Thëßrøthërs Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <style>
+    body { background: var(--cream); }
+
+    .faq-hero {
+      background: var(--brown-dark);
+      padding: 80px 8%;
+      text-align: center;
+    }
+
+    .faq-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .faq-hero p { color: var(--brown-light); font-size: 15px; }
+
+    .faq-body {
+      padding: 80px 8%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-category {
+      margin-bottom: 50px;
+    }
+
+    .faq-category h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--brown-main);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--brown-light);
+    }
+
+    .faq-item {
+      border: 1px solid var(--brown-light);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      background: #fff;
+      transition: 0.2s;
+    }
+
+    .faq-item:hover { border-color: var(--brown-main); }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 22px;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brown-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      gap: 12px;
+    }
+
+    .faq-question i {
+      color: var(--brown-main);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s;
+      padding: 0 22px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 22px 18px;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .faq-body { padding: 50px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Thëßrøthërs collection</h2>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="lifestyle.html">Lifestyle</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+  </header>
+
+  <div class="faq-hero">
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know about TBC.</p>
+  </div>
+
+  <div class="faq-body">
+
+    <div class="faq-category">
+      <h2>Orders & Shopping</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How do I place an order? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Browse our shop, add items to your cart, and click Checkout. You'll receive a WhatsApp or Instagram message from us to confirm your order and arrange payment and delivery.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What payment methods do you accept? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>We currently accept bank transfers and mobile payments. Our team will send you payment details when you checkout. We're working on adding card payments soon.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Do you deliver outside Lagos? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We deliver nationwide across Nigeria. Delivery fees vary by location. Lagos same-day delivery is available for orders placed before 12pm. Contact us for international shipping enquiries.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How long does delivery take? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Lagos: 1–2 business days. Other states: 2–5 business days. International: 7–14 business days depending on location.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Can I return or exchange an item? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. We accept returns and exchanges within 7 days of delivery, provided items are unworn and in original condition. Contact us via Instagram or WhatsApp to initiate a return.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <h2>Products</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Are your products authentic? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Every product we sell is carefully sourced and quality-checked. We stand behind what we sell — if you're not satisfied, we'll make it right.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What sizes do you carry? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>We carry sizes from Small to XXL for most clothing items, and shoe sizes 38–47. If your size isn't listed, contact us — we may be able to source it for you.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What is the Nomadic Collection? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>The Nomadic Collection is our signature in-house line — designed and branded by The Brothers Collection. It's inspired by freedom, movement, and bold street identity. The collection is dropping soon — follow us on Instagram to be the first to know.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <h2>Music & Entertainment</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Where can I stream your music? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Our music is available on Audiomack, Spotify, Apple Music, and YouTube. Visit our Music page to listen directly or find links to all platforms.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Can I collaborate with The Brothers Collection? <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely. We're open to music features, fashion collaborations, brand partnerships, and creative projects. Reach out via our Contact page or DM us on Instagram.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>Thëßrøthërs</h2>
+        <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <a href="shop.html">Wears</a>
+          <a href="shop.html">Shoes</a>
+          <a href="shop.html">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <a href="contact.html">Contact Us</a>
+          <a href="faq.html">FAQ</a>
+          <a href="policy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-social">
+      <p>Follow Us</p>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61589076495092&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tiktok.com/@thebrotherscollections?_r=1&_t=ZS-96AM1hBIxwQ" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/thebrothercollection.co/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://audiomack.com/double_cees" target="_blank" title="Audiomack"><i class="fas fa-music"></i></a>
+        <a href="https://www.spotify.com" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://x.com/Captain_5050" target="_blank" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
+    <p class="footer-tagline">Welcome To The Future 🚀</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    function toggleFAQ(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+</html>

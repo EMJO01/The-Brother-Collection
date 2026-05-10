@@ -22,6 +22,10 @@ body {
   line-height: 1.5;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* ===== HEADER ===== */
 header {
   background: var(--brown-dark);
@@ -44,6 +48,21 @@ nav ul.nav-links {
   display: flex;
   gap: 18px;
   list-style: none;
+}
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 998;
+}
+
+.nav-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .hamburger {
@@ -178,36 +197,33 @@ nav ul.nav-links {
   overflow: hidden;
 }
 
-/* bg wrapper hidden on desktop, activated by mobile.css */
-.hero-bg-img {
-  display: none;
-}
-
 .hero-img {
-  flex: 1 1 300px;
-  max-width: 400px;
+  flex: 1 1 42%;
+  max-width: 42%;
   width: 100%;
   border-radius: 14px;
   object-fit: cover;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 3/4;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   display: block;
 }
 
 .hero-content {
-  flex: 1 1 400px;
+  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
 .hero-content h2 {
-  font-size: clamp(2.5rem, 5vw, 5rem);
-  line-height: 1.05;
+  font-size: clamp(2.8rem, 4.5vw, 5.5rem);
+  line-height: 1.0;
   color: var(--brown-dark);
+  font-weight: 800;
 }
 
 .hero-content p {
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 5px;
   word-spacing: 4px;
   color: var(--muted);
@@ -268,7 +284,7 @@ nav ul.nav-links {
 
 .showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 22px;
 }
 
@@ -472,6 +488,122 @@ nav ul.nav-links {
 .ent-card h3 { font-size: 20px; padding: 12px 15px 0; }
 .ent-card p { font-size: 14px; color: #555; padding: 0 15px; }
 .ent-card a { display: inline-block; font-size: 14px; color: #0a66ff; font-weight: 600; margin: 10px 15px 5px; }
+
+
+/* ===== PARTNERS SECTION ===== */
+.partners-section {
+  padding: 70px 8%;
+  background: var(--brown-dark);
+  overflow: hidden;
+}
+
+.partners-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.partners-tag {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 10px;
+}
+
+.partners-header h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.partners-sub {
+  font-size: 14px;
+  color: rgba(244, 233, 221, 0.55);
+}
+
+.partners-track-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.partners-track-wrapper::before,
+.partners-track-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 2;
+}
+
+.partners-track-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--brown-dark), transparent);
+}
+
+.partners-track-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--brown-dark), transparent);
+}
+
+.partners-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: partnerScroll 12s linear infinite;
+}
+
+.partners-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes partnerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.partner-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(244, 233, 221, 0.06);
+  border: 1px solid rgba(244, 233, 221, 0.12);
+  border-radius: 14px;
+  padding: 18px 28px;
+  min-width: 220px;
+  transition: 0.25s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.partner-card:hover {
+  background: rgba(169, 116, 88, 0.15);
+  border-color: var(--brown-main);
+  transform: translateY(-3px);
+}
+
+.partner-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--brown-main);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.partner-card span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+}
 
 /* ===== ABOUT ===== */
 .about {

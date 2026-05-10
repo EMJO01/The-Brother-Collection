@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Thëßrøthërs Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <style>
+    body { background: var(--cream); }
+
+    .contact-hero {
+      background: var(--brown-dark);
+      padding: 80px 8%;
+      text-align: center;
+    }
+
+    .contact-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .contact-hero p { color: var(--brown-light); font-size: 15px; }
+
+    .contact-body {
+      padding: 80px 8%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-info h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      color: var(--brown-dark);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .contact-item-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--brown-main);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-item-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brown-dark);
+      margin-bottom: 4px;
+    }
+
+    .contact-item-text p, .contact-item-text a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .contact-item-text a:hover { color: var(--brown-main); }
+
+    .contact-form h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      color: var(--brown-dark);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brown-dark);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--brown-light);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: var(--brown-dark);
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--brown-main);
+    }
+
+    .form-group textarea { height: 130px; resize: vertical; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--brown-main);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.2s;
+    }
+
+    .submit-btn:hover { background: var(--brown-dark); }
+
+    .success-msg {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .contact-body { grid-template-columns: 1fr; gap: 40px; padding: 50px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Thëßrøthërs collection</h2>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="lifestyle.html">Lifestyle</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+  </header>
+
+  <div class="contact-hero">
+    <h1>Get In Touch</h1>
+    <p>We'd love to hear from you — orders, collabs, or just a hello.</p>
+  </div>
+
+  <div class="contact-body">
+    <div class="contact-info">
+      <h2>Contact Information</h2>
+
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fab fa-instagram"></i></div>
+        <div class="contact-item-text">
+          <h4>Instagram (Fastest Response)</h4>
+          <a href="https://www.instagram.com" target="_blank">@thebrrotherscollection</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
+        <div class="contact-item-text">
+          <h4>WhatsApp</h4>
+          <a href="https://wa.me/+2348160026389" target="_blank">+234 816 002 6389</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+        <div class="contact-item-text">
+          <h4>Email</h4>
+          <a href="mailto:hello@thebrrotherscollection.com">hello@thebrrotherscollection.com</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="contact-item-text">
+          <h4>Location</h4>
+          <p>Lagos, Nigeria 🇳🇬</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+        <div class="contact-item-text">
+          <h4>Response Time</h4>
+          <p>Usually within 24 hours</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2>Send a Message</h2>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select id="subject">
+          <option value="">Select a topic</option>
+          <option>Order Enquiry</option>
+          <option>Partnership / Collab</option>
+          <option>Music</option>
+          <option>General Question</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="message" placeholder="Write your message here..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="sendMessage()">
+        Send Message <i class="fas fa-paper-plane" style="margin-left:6px"></i>
+      </button>
+      <div class="success-msg" id="success-msg">
+        ✅ Message sent! We'll get back to you within 24 hours.
+      </div>
+    </div>
+  </div>
+
+  <footer id="contact-footer" class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>Thëßrøthërs</h2>
+        <p>More than fashion. A lifestyle brand built on culture, movement and identity.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <a href="shop.html">Wears</a>
+          <a href="shop.html">Shoes</a>
+          <a href="shop.html">Accessories</a>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <a href="contact.html">Contact Us</a>
+          <a href="faq.html">FAQ</a>
+          <a href="policy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-social">
+      <p>Follow Us</p>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61589076495092&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tiktok.com/@thebrotherscollections?_r=1&_t=ZS-96AM1hBIxwQ" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.instagram.com/thebrothercollection.co/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://audiomack.com/double_cees" target="_blank" title="Audiomack"><i class="fas fa-music"></i></a>
+        <a href="https://www.spotify.com" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://x.com/Captain_5050" target="_blank" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p>© 2025 <strong>The Brothers Collection</strong> | Powered by <span class="brand">Nexua</span></p>
+    <p class="footer-tagline">Welcome To The Future 🚀</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    function sendMessage() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Opens WhatsApp with pre-filled message
+      const text = encodeURIComponent(`Hello TBC!\n\nName: ${name}\nEmail: ${email}\n\nMessage: ${message}`);
+      window.open(`https://wa.me/+2348160026389?text=${text}`, '_blank');
+
+      document.getElementById('success-msg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
